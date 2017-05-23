@@ -1,0 +1,129 @@
+body,
+html {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+.container-fluid,
+.row {
+  height: 100%;
+}
+
+.login-form {
+  padding-top: 25%;
+  padding-left: 25%;
+  width: 80%;
+}
+
+.logo-container {
+  background: #62da73;
+}
+
+.logo-landing {
+  display: block;
+  margin: auto;
+  padding-top: 40%;
+}
+
+.login-form,
+.logo-container {
+  position: relative;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+#user-input,
+#pwd-input {
+  display: block;
+  font-weight: 300;
+  width: 100%;
+  font-size: 15px;
+  border: 0px;
+  outline: none;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #eee;
+  background: #fff;
+  font-family: Open Sans, Verdana;
+  padding: 15px 7px auto auto;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  border-bottom: 1px solid #eee;
+  border-radius: 0 0;
+}
+
+.form-group {
+  padding-top: 10px;
+}
+
+#user-input:focus,
+#pwd-input:focus {
+  border-bottom: 1px solid #ff916f;
+  -webkit-transition: border-bottom 0.3s ease-in-out;
+  -moz-transition: border-bottom 0.3s ease-in-out;
+  -ms-transition: border-bottom 0.3s ease-in-out;
+  -o-transition: border-bottom 0.3s ease-in-out;
+  transition: border-bottom 0.3s ease-in-out;
+}
+
+.btn-login {
+  border-radius: 0 0;
+  background: #ff916f;
+  border-style: none;
+  width: 100%;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  -ms-transition: background 0.3s ease-in-out;
+  -o-transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out;
+  color: #fff;
+}
+
+.btn-login:hover {
+  background: #62da73;
+  cursor: pointer;
+}
+
+.btn-login:active {
+  background: #4e9b57;
+}
+
+
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+  transition: color 0.3s ease;
+}
+
+input:focus:-moz-placeholder {
+  color: transparent;
+  transition: color 0.3s ease;
+}
+
+
+/* FF 4-18 */
+
+input:focus::-moz-placeholder {
+  color: transparent;
+  transition: color 0.3s ease;
+}
+
+
+/* FF 19+ */
+
+input:focus:-ms-input-placeholder {
+  color: transparent;
+  transition: color 0.3s ease;
+}
+
+
+/* IE 10+ */

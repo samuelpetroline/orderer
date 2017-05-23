@@ -4,15 +4,28 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './_components/Login/login.component';
+import { LoadingComponent } from './_components/Loading/loading.component';
+
+import { LoadingService } from './_services/Loading/loading.service';
+
+import { RoutingModule } from './_modules/Routing/routing.module';
+import { MainPageComponent } from './_components/main-page/main-page.component';
+import { AlertComponent } from './_directives/alert/alert.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    LoadingComponent,
+    MainPageComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
