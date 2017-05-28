@@ -12,6 +12,7 @@ import { LoadingService } from './_services/Loading/loading.service';
 import { RoutingModule } from './_modules/Routing/routing.module';
 import { MainPageComponent } from './_components/main-page/main-page.component';
 import { AlertComponent } from './_directives/alert/alert.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AlertComponent } from './_directives/alert/alert.component';
     LoginComponent,
     LoadingComponent,
     MainPageComponent,
-    AlertComponent
+    AlertComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
