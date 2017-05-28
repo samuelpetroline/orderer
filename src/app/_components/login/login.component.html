@@ -1,12 +1,14 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-8">
-      <form class="login-form">
-        <div class="form-group">
-          <input id="user-input" type="email" class="form-control" placeholder="Usuário">
+      <form class="login-form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+          <input id="user-input" type="email" class="form-control" name="username"  [(ngModel)]="model.username" #username="ngModel" placeholder="Usuário" required>
+          <div *ngIf="f.submitted && !username.valid" class="help-block">é necessário digitar o usuário</div>
         </div>
-        <div class="form-group">
-          <input id="pwd-input" type="password" class="form-control" placeholder="Senha">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+          <input id="pwd-input" type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" placeholder="Senha" required>
+          <div *ngIf="f.submitted && !password.valid" class="help-block">é necessário digitar a senha</div>
         </div>
         <p><small>não é cadastrado ainda? <a href=""> cadastre-se aqui </a></small></p>
         <button type="submit" class="btn btn-login">Login</button>        
@@ -19,4 +21,5 @@
       </div>
     </div>
   </div>
+
 </div>
