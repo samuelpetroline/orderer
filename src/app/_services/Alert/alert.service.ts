@@ -24,6 +24,7 @@ export class AlertService {
     }
  
     success(message: string, keepAfterNavigationChange = false) {
+        console.log(message);
         this.keepAfterNavigationChange = keepAfterNavigationChange;
         this.subject.next({ type: 'success', text: message });
     }

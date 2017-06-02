@@ -5,7 +5,8 @@ import { AlertService } from '../../_services/Alert/alert.service';
 @Component({
   selector: 'alert',
   templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.css']
+  styleUrls: ['./alert.component.css'],
+  providers: [AlertService]
 })
 export class AlertComponent implements OnInit {
   message: any;

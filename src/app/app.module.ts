@@ -8,11 +8,12 @@ import { LoginComponent } from './_components/Login/login.component';
 import { LoadingComponent } from './_components/Loading/loading.component';
 
 import { LoadingService } from './_services/Loading/loading.service';
+import { AlertService } from './_services/Alert/alert.service';
 
 import { RoutingModule } from './_modules/Routing/routing.module';
 import { MainPageComponent } from './_components/main-page/main-page.component';
 import { AlertComponent } from './_directives/alert/alert.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './_components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,10 @@ import { RegisterComponent } from './register/register.component';
     HttpModule,
     RoutingModule
   ],
-  providers: [],
+  providers: [
+    AlertService,
+    LoadingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,138 @@
+.page {
+  font-family: 'Open Sans', sans-serif;
+  background-image: none;
+  background-color: #99ed8d !important;
+  height: 100vh;
+  overflow: hidden;
+}
+
+h3 {
+  font-weight: 600;
+}
+
+p {
+  font-weight: 300;
+}
+
+.registration-form {
+  padding-top: 20%;
+}
+
+.form-styles {
+  padding: 40px 100px 40px 100px;
+  text-align: center;
+}
+
+.form-box {
+  background-color: white;
+  height: 100vh;
+  vertical-align: middle;
+}
+
+input[type="text"],
+input[type="password"],
+input.form-inputs {
+  border: 1px #cfcfcf solid;
+  font-weight: 300;
+  color: #999999;
+  font-size: 12pt;
+  margin: 0 auto;
+  border-radius: 0px;
+  height: 50px;
+  line-height: 50px;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input.form-inputs:focus {
+  border: 2px #f9bf7d solid;
+  -webkit-transition: border 0.3s ease-in-out;
+  -moz-transition: border 0.3s ease-in-out;
+  -ms-transition: border 0.3s ease-in-out;
+  -o-transition: border 0.3s ease-in-out;
+  transition: border 0.3s ease-in-out;
+}
+
+input[type="text"]:-moz-placeholder,
+input[type="password"]:-moz-placeholder,
+textarea:-moz-placeholder,
+textarea.form-control:-moz-placeholder {
+  color: #888;
+}
+
+input[type="text"]:-ms-input-placeholder,
+input[type="password"]:-ms-input-placeholder,
+textarea:-ms-input-placeholder,
+textarea.form-control:-ms-input-placeholder {
+  color: #888;
+}
+
+input[type="text"]::-webkit-input-placeholder,
+input[type="password"]::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder,
+textarea.form-control::-webkit-input-placeholder {
+  color: #888;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+  transition: color 0.3s ease;
+}
+
+input:focus:-moz-placeholder {
+  color: transparent;
+  transition: color 0.3s ease;
+}
+
+input:focus::-moz-placeholder {
+  color: transparent;
+  transition: color 0.3s ease;
+}
+
+input:focus:-ms-input-placeholder {
+  color: transparent;
+  transition: color 0.3s ease;
+}
+
+button.btn-step,
+button.btn-finish {
+  width: 160px;
+  height: 50px;
+  font-weight: 500;
+  background: #f9bf7d;
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 0px;
+  -o-transition: all .3s;
+  -moz-transition: all .3s;
+  -webkit-transition: all .3s;
+  -ms-transition: all .3s;
+  transition: all .3s;
+}
+
+button.btn-finish {
+  background: #99ed8d;
+}
+
+.payment-method-img {
+  width: 360px;
+  height: 260px;
+}
+
+label > input[type="radio"]{ /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+label >  input[type="radio"] + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:2px solid transparent;
+}
+label >  input[type="radio"]:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:2px solid #f9bf7d;
+}

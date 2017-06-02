@@ -6,9 +6,10 @@ import { AlertService } from '../../_services/alert/alert.service';
 import { AuthenticationService } from '../../_services/authentication/authentication.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [LoadingService, AlertService, AuthenticationService]
 })
 export class LoginComponent implements OnInit {
 
@@ -28,11 +29,11 @@ export class LoginComponent implements OnInit {
     // reset login status
     this.authenticationService.logout();
 
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    // get return url from route parameters or default to '/main'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/main';
   }
 
-   ngOnDestroy(){
+  ngOnDestroy(){
     this.loading.start();
   }
 
