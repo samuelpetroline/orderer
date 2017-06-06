@@ -1,0 +1,26 @@
+<nav class="col-sm-3 col-md-2 hidden-xs-down sidebar">
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+      <div class="nav-login"></div>      
+    </li>
+    <li>
+      <div class="text-center">
+        {{ user.name }}
+      </div>
+    </li>
+  </ul>
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+      <a class="nav-link active" [routerLink]="['../dashboard']"> Principal </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"[routerLink]="['../orders']"> Pedidos </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"[routerLink]="['../products']"> Produtos </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"[routerLink]="['../settings']"> Configurações </a>
+    </li>
+  </ul>
+</nav>

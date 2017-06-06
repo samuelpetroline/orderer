@@ -6,14 +6,14 @@ import { AuthGuard } from '../../_guards/auth.guard';
 import { LoginComponent } from '../../_components/Login/login.component';
 import { RegisterComponent } from '../../_components/register/register.component';
 import { MainPageComponent } from '../../_components/main-page/main-page.component';
+import { MainPageRoutingModule } from './main-page.module';
 
 const routes: Routes = 
 [
   {
     path: '',
     redirectTo: 'login',
-    pathMatch: 'full',
-    canActivate: [AuthGuard]
+    pathMatch: 'full'
   },
   {
     path: 'login',
@@ -26,6 +26,7 @@ const routes: Routes =
   {
     path: 'main',
     component: MainPageComponent
+    //canActivate: [AuthGuard]
   },
   { 
     path: '**', 
@@ -36,7 +37,8 @@ const routes: Routes =
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MainPageRoutingModule
   ],
   exports: [RouterModule],
   declarations: []
