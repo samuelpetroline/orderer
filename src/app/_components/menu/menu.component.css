@@ -7,16 +7,14 @@
   padding: 20px;
   overflow-x: hidden;
   overflow-y: auto;
-  /* Scrollable contents if viewport is shorter than content. */
   border-right: 1px solid #eee;
 }
-
-
-/* Sidebar navigation */
 
 .sidebar {
   padding-left: 0;
   padding-right: 0;
+  background-color: #eee;
+  box-shadow: 2px 0px 10px 1px #c7c7c7;
 }
 
 .sidebar .nav {
@@ -31,8 +29,24 @@
   margin-left: 0;
 }
 
+.sidebar .nav-logout {
+  line-height: 100%;
+}
+
 .sidebar .nav-link {
   border-radius: 0;
+  cursor: pointer;
+  color: #f9bf7d;
+}
+
+.sidebar .nav-item a.nav-link:hover{
+  background-color: #99ed8d !important;
+  color: #fff;
+}
+
+.sidebar .nav-item a.nav-link.active{
+  background-color: #f9bf7d !important;
+  color: #fff;
 }
 
 .sidebar .nav-login {

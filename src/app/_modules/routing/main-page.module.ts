@@ -13,9 +13,11 @@ import { SettingsComponent } from '../../_components/settings/settings.component
 const mainPageRoutes: Routes = 
 [
   {
-      path: 'main',
-      component: MainPageComponent,
-      children: [
+        
+        path: 'main',
+        component: MainPageComponent,
+        //canActivate: [AuthGuard],
+        children: [
           {
               path: '',
               component: DashboardComponent
