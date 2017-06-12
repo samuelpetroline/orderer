@@ -12,6 +12,7 @@ import { LoadingComponent } from './_components/Loading/loading.component';
 import { LoadingService } from './_services/Loading/loading.service';
 import { AlertService } from './_services/Alert/alert.service';
 import { AuthenticationService } from './_services/Authentication/authentication.service';
+import { UserService } from './_services/User/user.service';
 
 import { AuthGuard } from './_guards/auth.guard';
 
@@ -25,6 +26,7 @@ import { ProductsComponent } from './_components/products/products.component';
 import { StoresComponent } from './_components/stores/stores.component';
 import { SettingsComponent } from './_components/settings/settings.component';
 import { DashboardComponent } from './_components/dashboard/dashboard.component';
+import { CardComponent } from './_components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { DashboardComponent } from './_components/dashboard/dashboard.component'
     OrdersComponent,
     ProductsComponent,
     StoresComponent,
-    SettingsComponent
+    SettingsComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { DashboardComponent } from './_components/dashboard/dashboard.component'
     AlertService,
     LoadingService,
     AuthGuard,
-    AuthenticationService
+    AuthenticationService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

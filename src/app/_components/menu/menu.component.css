@@ -5,16 +5,15 @@
   left: 0;
   z-index: 1000;
   padding: 20px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  border-right: 1px solid #eee;
+  overflow: hidden;
+  border-right: 1px solid #394648;
+  min-width: 280px;
 }
 
 .sidebar {
   padding-left: 0;
   padding-right: 0;
-  background-color: #eee;
-  box-shadow: 2px 0px 10px 1px #c7c7c7;
+  background-color: #394648;
 }
 
 .sidebar .nav {
@@ -23,6 +22,13 @@
 
 .sidebar .nav-item {
   width: 100%;
+  height: 100%;
+  padding: 10px 0px 10px 0px;
+  border-bottom: 1px solid #435356;
+}
+
+.sidebar .nav-item:first-child {
+  border-top: 1px solid #435356;
 }
 
 .sidebar .nav-item+.nav-item {
@@ -36,25 +42,56 @@
 .sidebar .nav-link {
   border-radius: 0;
   cursor: pointer;
-  color: #f9bf7d;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 300;
+  -webkit-transition: background-color .2s ease-out;
+  -moz-transition: background-color .2s ease-out;
+  -o-transition: background-color .2s ease-out;
+  transition: background-color .2s ease-out;
 }
 
-.sidebar .nav-item a.nav-link:hover{
-  background-color: #99ed8d !important;
+.sidebar .nav-item:hover {
   color: #fff;
+  background-color: #99ED8D;
+  border-bottom: 1px solid #99ED8D;
 }
 
-.sidebar .nav-item a.nav-link.active{
-  background-color: #f9bf7d !important;
+.sidebar .nav-item.active {
   color: #fff;
+  background-color: #F9BF7D;
+  border-right: 1px solid #F9BF7D;
+  border-bottom: 1px solid #F9BF7D;
+  height: 100%;
 }
 
 .sidebar .nav-login {
   width: 200px;
   height: 200px;
   background-image: url("../../../assets/img/user.jpg");
+  background-size: cover;
   display: block;
   margin: 0 auto;
   border-radius: 50%;
-  background-size: cover;
+  border: 2px solid #ebebeb;
+}
+
+.sidebar .nav-user {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 300;
+  color: #ebebeb;
+  padding-top: 10px;
+}
+
+.sidebar .nav-logout {
+  position: absolute;
+  top: 90%;
+  height: auto;
+  border-top: 1px solid #435356;
+}
+
+.fa {
+  font-size: 20px;
+  padding-right: 5px;
 }

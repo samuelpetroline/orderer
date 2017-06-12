@@ -12,14 +12,19 @@ import { SettingsComponent } from '../../_components/settings/settings.component
 
 const mainPageRoutes: Routes = 
 [
-  {
-        
+  {        
         path: 'main',
         component: MainPageComponent,
         //canActivate: [AuthGuard],
         children: [
           {
               path: '',
+              pathMatch: 'full',
+              redirectTo: 'dashboard'
+          },
+          {
+              path: 'dashboard',
+              pathMatch: 'full',
               component: DashboardComponent
           },
           {
@@ -30,8 +35,8 @@ const mainPageRoutes: Routes =
           {
               path: 'products',
               pathMatch: 'full',
-              component: ProductsComponent
-          },
+              component: ProductsComponent              
+          },          
           {
               path: 'stores',
               pathMatch: 'full',

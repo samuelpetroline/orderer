@@ -1,31 +1,29 @@
-<nav class="col-sm-3 col-md-2 hidden-xs-down sidebar">
+<nav class="hidden-sm-down sidebar">
   <ul class="nav flex-column">
-    <li class="nav-item">
+    <li class="nav-photo">
       <div class="nav-login"></div>      
     </li>
     <li>
-      <div class="text-center">
-        <!--{{ user.name }} -->
+      <div class="nav-user">
+        <!--{{ user.name }} --> Celine Dion
       </div>
     </li>
   </ul>
   <ul class="nav nav-pills flex-column">
-    <li class="nav-item">
-      <a class="nav-link active" [routerLink]="['../dashboard']"> Principal </a>
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" [routerLink]="['dashboard']" > <i class="fa fa-home" aria-hidden="true"></i> Principal </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link"[routerLink]="['../orders']"> Pedidos </a>
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link"[routerLink]="['orders']" > <i class="fa fa-shopping-cart" aria-hidden="true"></i> Pedidos </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link"[routerLink]="['../products']"> Produtos </a>
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link"[routerLink]="['products']" ><i class="fa fa-coffee" aria-hidden="true"></i> Produtos </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link"[routerLink]="['../settings']"> Configurações </a>
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link"[routerLink]="['settings']" > <i class="fa fa-cog" aria-hidden="true"></i> Configurações </a>
     </li>
-  </ul>
-  <ul class="nav nav-pills flex-column">
     <li class="nav-item nav-logout">
-      <a class="nav-link" (click)="logout()"> Sair </a>
+      <a class="nav-link" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair </a>
     </li>
   </ul>
 </nav>
