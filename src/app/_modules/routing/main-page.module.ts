@@ -7,6 +7,7 @@ import { MainPageComponent } from '../../_components/main-page/main-page.compone
 import { DashboardComponent } from '../../_components/dashboard/dashboard.component';
 import { OrdersComponent } from '../../_components/orders/orders.component';
 import { ProductsComponent } from '../../_components/products/products.component';
+import { ProductDetailsComponent } from '../../_components/product-details/product-details.component';
 import { StoresComponent } from '../../_components/stores/stores.component';
 import { SettingsComponent } from '../../_components/settings/settings.component';
 
@@ -36,7 +37,11 @@ const mainPageRoutes: Routes =
               path: 'products',
               pathMatch: 'full',
               component: ProductsComponent              
-          },          
+          },
+          {
+              path: 'products/:id',
+              component: ProductDetailsComponent              
+          },      
           {
               path: 'stores',
               pathMatch: 'full',

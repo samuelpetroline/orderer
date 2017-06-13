@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ProductService } from '../../_services/Product/product.service';
 
 @Component({
-  selector: 'app-products',
+  selector: 'products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
+  providers: [ProductService]
 })
 export class ProductsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _prodService: ProductService,
+              private router: Router) { }
+
+  productList: any[];
 
   ngOnInit() {
+    this.productList = this._prodService.getAll();
   }
 
 }

@@ -27,6 +27,7 @@ import { StoresComponent } from './_components/stores/stores.component';
 import { SettingsComponent } from './_components/settings/settings.component';
 import { DashboardComponent } from './_components/dashboard/dashboard.component';
 import { CardComponent } from './_components/card/card.component';
+import { ProductDetailsComponent } from './_components/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CardComponent } from './_components/card/card.component';
     ProductsComponent,
     StoresComponent,
     SettingsComponent,
-    CardComponent
+    CardComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
