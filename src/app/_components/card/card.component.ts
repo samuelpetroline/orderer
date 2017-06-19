@@ -9,6 +9,7 @@ import { Product } from '../../_models/product';
 export class CardComponent implements OnInit {
 
   @Input() product: Product;
+  @Input() user: any = {};
   
   constructor() { }
 

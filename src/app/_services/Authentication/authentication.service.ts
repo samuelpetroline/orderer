@@ -8,24 +8,21 @@ import { UserService } from '../User/user.service';
  
 @Injectable()
 export class AuthenticationService {
-    constructor(private http: Http, private config: AppConfig, private userService: UserService) { }
+
+    constructor(private http: Http, private config: AppConfig, private userService: UserService) {}
+     
  
     login(username: string, password: string) {
-        return this.http.post(this.config.apiUrl + '/users/authenticate', { username: username, password: password })
+        return this.http.post(this.config.apiUrl + '/api/users/authenticate/' + username + '/' + password, "")
             .map((response: Response) => {
-                // login successful if there's a jwt token in the response
                 let user = response.json();
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('user', JSON.stringify(user));
+                if (user) {
                     this.userService.login(user);
                 }
             });
     }
  
     logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('user');
         this.userService.logout();
     }
 }

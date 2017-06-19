@@ -1,44 +1,78 @@
-<!-- <div class="card-box">
-  <div class="card-image">
-  </div>
-  <div class="col-sm-12">
-    <div class="card-bottom">
-      <div class="card-title">
-        <h2>Teste</h2>
-      </div>
-    </div>
-
-    <div class="card-price">R$ 25</div>
-    <div class="card-description">Teste de descrição</div>
-    <div class="card-cart-add"></div>
-  </div>
-
-
-</div> -->
-
-
+<!--
 <div class="card">
   <div class="image">
-    <img src="{{product.image}}"  width="100%">
+    <img src="{{product.image}}">
   </div>
   <div class="text">
-    <!--<div class="fab">&#43;</div>-->
-    <div class="row">
-      <div class="col-sm-8">
-        <div class="title">
-          <h5>{{product.name}}</h5>
+    
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="title">
+            <h5>{{product.name}}</h5>
+          </div>
         </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="price">
-          <h5>R$ {{product.price}}</h5>
+        <div class="col-sm-4">
+          <div class="price">
+            <h5>R$ {{product.price}}</h5>
+          </div>
         </div>
-      </div>
 
+      </div>
+      <div class="row">
+        <div class="description">
+          <p>{{product.description}}</p>
+        </div>
+      </div>
+      <div class="row border">
+        <div class="col-sm-4">
+          <button type="submit" class="btn btn-info"><i class="fa fa-info" aria-hidden="true"></i></button>
+        </div>
+        <div class="col-sm-4 offset-sm-4">
+          <button type="submit" class="btn btn-cart">+ <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+        </div>
+      </div>
     </div>
-    <div class="row">
-      <div class="description">
-        <p>{{product.description}}</p>
+  </div>
+</div> -->
+
+<div class="card">
+  <a [routerLink]="['../product-details', product.Codigo]">
+    <div class="img-card">
+      <img src="{{product.Imagem}}">
+    </div>
+    <div class="card-content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="card-title">
+                <h5>{{product.Nome}}</h5>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="card-price">
+                <h5>R$ {{product.Valor}}</h5>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card-description">
+                <p>{{product.Descricao}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+  <div class="row" *ngIf="user.Admin == false">
+    <div class="col-md-12">
+      <div class="card-cart">
+        <a class="btn btn-cart" href="javascript:void(0)">
+            Adicionar ao carrinho
+          </a>
       </div>
     </div>
   </div>

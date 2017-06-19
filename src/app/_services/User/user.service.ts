@@ -3,42 +3,44 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 
-import { User } from '../../_models/user';
 import { AppConfig } from '../../app.config';
 
 @Injectable()
 export class UserService {
-  private subject = new Subject<User>();
+  private subject = new Subject<any>();
+  private headers: Headers = new Headers();
+  private options:RequestOptions;
 
-  constructor(private http: Http, private config: AppConfig) { }
+  constructor(private http: Http, private config: AppConfig) {
+    this.headers.append('Content-Type', 'application/json');
+
+    this.options = new RequestOptions({ headers: this.headers });
+   }
+
+   getUser() {
+     return localStorage.getItem('user');
+   }
 
   login(user: any) {
+    localStorage.setItem('user', JSON.stringify(user));
     this.subject.next(user);
   }
 
   logout() {
+    localStorage.removeItem('user');
     this.subject.next();
   }
 
-  getUserById(_id : string) : Observable<User> {
-    return this.http.get(this.config.apiUrl + '/users/' + _id, this.jwt()).map((response: Response) => response.json());
+  getUserById(_id : string) : Observable<any> {
+    return this.http.get(this.config.apiUrl + '/api/users/' + _id).map((response: Response) => response.json());
   }
 
-  create(user: User) {
-    return this.http.post(this.config.apiUrl + '/users/register', user, this.jwt());
+  create(user: any) {
+    return this.http.post(this.config.apiUrl + '/api/users', JSON.stringify(user), this.options);
   }
 
-  update(user: User) {
-        return this.http.put(this.config.apiUrl + '/users/' + user._id, user, this.jwt());
-    }
-
-  private jwt() {
-        // create authorization header with jwt token
-        let currentUser = JSON.parse(localStorage.getItem('user'));
-        if (currentUser && currentUser.token) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-            return new RequestOptions({ headers: headers });
-        }
+  update(user: any) {
+        return this.http.put(this.config.apiUrl + '/api/users/' + user._id, JSON.stringify(user), this.options);
     }
 
 }

@@ -1,0 +1,43 @@
+
+.card {
+    border-radius: 0px; 
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.card-block {
+    padding: 1.25rem;
+}
+
+.card-footer {
+    border-top: 1px solid #e1e6ef;
+    padding: .75rem 1.25rem;
+}
+
+.card-primary {
+    background-color: #20a8d8;
+}
+
+.card-danger {
+    background-color: #ff5454;
+}
+
+.card-warning {
+    background-color: #fabb3d;
+}
+
+.card-success {
+    background-color: #79c447;
+}
+
+.card-info {
+    background-color: #67c2ef;
+}
+
+.pb-0 {
+    padding-bottom: 0 !important;
+}
+
+.mb-0 {
+    margin-bottom: 0!important
+}

@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { LoadingService } from '../../_services/Loading/loading.service';
-import { AlertService } from '../../_services/alert/alert.service';
-import { AuthenticationService } from '../../_services/authentication/authentication.service';
+import { AlertService } from '../../_services/Alert/alert.service';
+import { AuthenticationService } from '../../_services/Authentication/authentication.service';
 
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers: [LoadingService, AlertService, AuthenticationService]
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
@@ -24,17 +23,12 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService) { }
 
   ngOnInit() {
-    this.loading.stop();
 
     // reset login status
     this.authenticationService.logout();
 
     // get return url from route parameters or default to '/main'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/main';
-  }
-
-  ngOnDestroy(){
-    this.loading.start();
   }
 
   login() {
@@ -44,10 +38,7 @@ export class LoginComponent implements OnInit {
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
-                    // remover comentários
-                    //this.alertService.error(error._body);
-                    //this.loading.stop();
-                    this.router.navigate([this.returnUrl]);
+                    this.alertService.error(error._body);                    
                 });
   }
 

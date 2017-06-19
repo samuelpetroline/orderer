@@ -14,19 +14,38 @@ p {
   font-weight: 300;
 }
 
+.p50 {
+  padding: 50px;
+}
+
 .registration-form {
-  padding-top: 20%;
+  padding-top: 200px;
 }
 
 .form-styles {
   padding: 40px 100px 40px 100px;
-  text-align: center;
+  height: 100%;
 }
+
+.form-styles-s2 {
+  padding: 40px 50px 40px 50px;
+  height: 100%;
+}
+
 
 .form-box {
   background-color: white;
   height: 100vh;
   vertical-align: middle;
+  text-align: center;
+}
+
+.border-right {
+  border-right: 1px solid #cfcfcf;
+}
+
+.has-danger > input.form-inputs {
+  border: 1px #d9534f solid;
 }
 
 input[type="text"],
@@ -34,7 +53,7 @@ input[type="password"],
 input.form-inputs {
   border: 1px #cfcfcf solid;
   font-weight: 300;
-  color: #999999;
+  color: #515151;
   font-size: 12pt;
   margin: 0 auto;
   border-radius: 0px;

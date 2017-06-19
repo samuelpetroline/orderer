@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppConfig } from './app.config';
 
@@ -13,6 +14,7 @@ import { LoadingService } from './_services/Loading/loading.service';
 import { AlertService } from './_services/Alert/alert.service';
 import { AuthenticationService } from './_services/Authentication/authentication.service';
 import { UserService } from './_services/User/user.service';
+import { CepService } from './_services/Cep/cep.service';
 
 import { AuthGuard } from './_guards/auth.guard';
 
@@ -23,11 +25,16 @@ import { RegisterComponent } from './_components/register/register.component';
 import { MenuComponent } from './_components/menu/menu.component';
 import { OrdersComponent } from './_components/orders/orders.component';
 import { ProductsComponent } from './_components/products/products.component';
-import { StoresComponent } from './_components/stores/stores.component';
 import { SettingsComponent } from './_components/settings/settings.component';
 import { DashboardComponent } from './_components/dashboard/dashboard.component';
 import { CardComponent } from './_components/card/card.component';
 import { ProductDetailsComponent } from './_components/product-details/product-details.component';
+import { EqualValidator } from './_directives/validator/validator.directive';
+import { MaskValidatorDirective } from './_directives/mask-validator/mask-validator.directive';
+import { SafeHtml } from './_pipes/SafeHTML/safe-html.pipe';
+import { ProductRegisterComponent } from './_components/product-register/product-register.component';
+import { ProductListComponent } from './_components/product-list/product-list.component';
+import { FilterListPipe } from './_pipes/FilterList/filter-list.pipe';
 
 @NgModule({
   declarations: [
@@ -41,16 +48,22 @@ import { ProductDetailsComponent } from './_components/product-details/product-d
     DashboardComponent,
     OrdersComponent,
     ProductsComponent,
-    StoresComponent,
     SettingsComponent,
     CardComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    EqualValidator,
+    MaskValidatorDirective,
+    SafeHtml,
+    ProductRegisterComponent,
+    ProductListComponent,
+    FilterListPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RoutingModule
+    RoutingModule,
+    ChartsModule
   ],
   providers: [
     AppConfig,
@@ -58,7 +71,8 @@ import { ProductDetailsComponent } from './_components/product-details/product-d
     LoadingService,
     AuthGuard,
     AuthenticationService,
-    UserService
+    UserService,
+    CepService
   ],
   bootstrap: [AppComponent]
 })

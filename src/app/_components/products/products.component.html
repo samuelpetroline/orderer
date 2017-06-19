@@ -1,15 +1,1 @@
-<div class="row">
-  <div class="col-sm-11">
-    <div class="btn btn-primary btn-register pull-right"> 
-        Cadastrar
-    </div>
-  </div>
-</div>
-
-<section class="products">
-  <card *ngFor="let product of productList"
-    [product] = "product"
-    [routerLink]="['products', product.id]">
-  </card>
-</section>
-
+<router-outlet></router-outlet>
