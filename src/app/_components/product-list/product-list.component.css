@@ -1,0 +1,51 @@
+.search-icon
+{
+    color:#fff;
+}
+
+.search-bar {
+    border-radius: 0px;
+}
+
+.search-bar:focus {
+    border: 1px solid #00A7D8;
+}
+
+.search-button
+{
+    background-color:#00A7D8;
+    border-radius:1px;
+}
+
+.btn-flat {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    background-color: #99ED8D;
+    border-radius: 0px;
+    border: 0px;
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+    vertical-align: middle;
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12pt;
+}
+
+.inactive {
+    padding-top: 50px;
+} 
+
+.inactive card {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    opacity: .7;
+    transition: all .3s ease-in-out;
+}
+
+.inactive card:hover {
+    -webkit-filter: grayscale(0); /* Safari 6.0 - 9.0 */
+    filter: grayscale(0);
+    opacity: 1;
+}
