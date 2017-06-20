@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { LoadingService } from '../../_services/Loading/loading.service';
@@ -12,6 +12,9 @@ import { AuthenticationService } from '../../_services/Authentication/authentica
 })
 export class LoginComponent implements OnInit {
 
+  @ViewChild('login') loginButton;
+
+  private isLogging: boolean = false;
   model: any = {};
   returnUrl: string;
 
@@ -32,13 +35,18 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.isLogging = true;
+
+    console.log(this.loginButton);
+
     this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(
                 data => {
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
-                    this.alertService.error(error._body);                    
+                    this.alertService.error(error._body);        
+                    this.isLogging = false;            
                 });
   }
 
