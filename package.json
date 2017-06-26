@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "@jaspero/ng2-alerts": "0.0.7",
     "chart.js": "^2.6.0",
     "core-js": "^2.4.1",
     "ng2-charts": "^1.6.0",

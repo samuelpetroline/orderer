@@ -6,7 +6,7 @@
           <div class="card card-inverse card-primary">
             <div class="card-block pb0 text-center">
               <p class="lead"> Saldo atual: </p>
-              <h2 class="mb-0"> R$ 25,00 </h2>
+              <h2 class="mb-0"> R$ {{dashboard.Saldo}} </h2>
             </div>
           </div>
         </div>
@@ -17,7 +17,7 @@
           <div class="card card-inverse card-success">
             <div class="card-block pb0 text-center">
               <p class="lead"> Pedidos pendentes </p>
-              <h2 class="mb-0"> 2 </h2>
+              <h2 class="mb-0"> {{dashboard.PedidoPendentes}} </h2>
             </div>
           </div>
         </div>
@@ -26,7 +26,7 @@
           <div class="card card-inverse card-warning">
             <div class="card-block pb0 text-center">
               <p class="lead"> Pedidos feitos no total </p>
-              <h2 class="mb-0"> 2 </h2>
+              <h2 class="mb-0"> {{dashboard.PedidosTotais}} </h2>
             </div>
           </div>
         </div>
@@ -35,7 +35,7 @@
           <div class="card card-inverse card-danger">
             <div class="card-block pb0 text-center">
               <p class="lead"> Pedidos cancelados </p>
-              <h2 class="mb-0"> 2 </h2>
+              <h2 class="mb-0"> {{dashboard.PedidosCancelados}} </h2>
             </div>
           </div>
         </div>

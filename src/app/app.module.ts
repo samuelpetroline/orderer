@@ -16,6 +16,7 @@ import { AuthenticationService } from './_services/Authentication/authentication
 import { UserService } from './_services/User/user.service';
 import { CepService } from './_services/Cep/cep.service';
 import { OrderService } from './_services/Order/order.service';
+import { DashboardService } from './_services/Dashboard/dashboard.service';
 
 import { AuthGuard } from './_guards/auth.guard';
 
@@ -70,7 +71,7 @@ import { CartComponent } from './_components/cart/cart.component';
     FormsModule,
     HttpModule,
     RoutingModule,
-    ChartsModule
+    ChartsModule   
   ],
   providers: [
     AppConfig,
@@ -80,7 +81,8 @@ import { CartComponent } from './_components/cart/cart.component';
     AuthenticationService,
     UserService,
     CepService,
-    OrderService
+    OrderService,
+    DashboardService
   ],
   bootstrap: [AppComponent]
 })
