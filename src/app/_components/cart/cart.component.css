@@ -1,0 +1,154 @@
+.btn-flat {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  border-radius: 0px;
+  border: 0px;
+  height: z50px;
+  transition: all .5s ease-in-out;
+  cursor: pointer;
+  vertical-align: middle;
+  font-weight: 400;
+  color: #fff;
+  text-decoration: none;
+  font-size: 12pt;
+}
+
+.btn-success {
+    background-color: #99ED8D;
+}
+
+.btn-success:hover {
+    background-color: #6AD15D;
+}
+
+.btn-orange {
+  background-color: #f9bf7d;
+  color: #fff;
+  border-radius: 0px;
+}
+
+.btn-trash {
+  width: 50px;
+  
+}
+
+.jumbotron {
+  background-color: transparent;
+  border-radius: 0px;
+  padding: 190px 0px 20px 0px; 
+}
+
+.empty-cart-img {
+  display: block;
+  margin: 0 auto;
+}
+
+.product-list {
+  padding: 10px;
+}
+
+.product {
+  border: 1px solid #ebebeb;
+  border-radius: 0px;
+  padding: 20px;
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+}
+
+.product:last-child {
+  margin-bottom: 20px;
+}
+
+.product-image {
+  margin-right: 20px;
+}
+
+section {
+  display: block;
+}
+
+.meta-left {
+  float: left;
+}
+
+.meta-right {
+  float: right;
+}
+
+.product-image,
+.product-image img {
+  width: 250px;
+  height: 200px;
+  float: left;
+  clear: right;
+  overflow: hidden;
+}
+
+.title {
+  float: left;
+  clear: right;
+  font-size: 30px;
+  font-weight: 500;
+  color: #f9bf7d;
+}
+
+.price {
+  float: left;
+  clear: left;
+  color: #c9c9c9;
+  font-size: 20px;
+  font-weight: 400;
+  padding-top: 5px;
+}
+
+.meta-total {
+  margin: 5px;
+  border-top: 1px solid #f9bf7d;
+  border-bottom: 1px solid #f9bf7d;
+  padding: 10px;
+}
+
+.total {
+  text-align: right;
+}
+
+.spinner>input[type=number] {
+  width: 55px;
+  height: 35px;
+  padding: 0px 0px 0px 15px;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  background-color: #FCAD51;
+  border: 1px solid #FCAD51;
+  pointer-events: none;
+}
+
+.spinner {
+  clear: both;
+  height: 40px;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  padding: 30px 0px;
+}
+
+.spinner>.sub,
+.spinner>.add {
+  text-align: center;
+  padding: 5px 0px 5px 0px;
+  position: static;
+  background-color: #f9bf7d;
+  color: #fff;
+  font-size: 20pt;
+  cursor: pointer;
+}
+
+.p20 {
+  padding: 20px 0px;
+}

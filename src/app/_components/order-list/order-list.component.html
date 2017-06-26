@@ -1,0 +1,26 @@
+<section class="orders">
+
+  <!-- TODO: Fazer os pedidos em um component -->
+  <div class="order-list" >
+    <div class="order" *ngFor="let order of orderList" id="{{order.Codigo}}" >
+      <article class="order-body">
+        <div class="meta">          
+          <span class="name"> Pedido #{{order.Codigo}} </span>
+          <span class="date"> {{order.Data}} </span>          
+          <span class="price"> R$ {{order.Valor}} </span>          
+        </div>
+        <div class="status">
+          <button type="button" class="btn btn-flat" [ngClass]="{'btn-danger': order.Status == 'Pendente', 'btn-warning': order.Status == 'Pago', 'btn-default': order.Status == 'Esperando o produto ser retirado', 'btn-success': order.Status == 'Concluído'}">
+            {{order.Status}}
+          </button>          
+        </div>
+        <div class="details">
+          <a role="button" [routerLink]="['order-details', order.Codigo]" class="btn btn-warning btn-flat">Detalhes</a>
+        </div>
+        <div class="clearfix">          
+        </div>
+      </article>
+    </div>
+  </div>
+
+</section>

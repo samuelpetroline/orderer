@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-sm-12 col-lg-12">
+
+
+    <div class="jumbotron" [hidden]="itemList.length > 0">
+      <img class="empty-cart-img" src="../../../assets/img/empty_cart.png" />
+      <h1 class="text-center">O seu carrinho está vazio
+        <p> </p>
+        <p><small class="text-center">Adicione alguma coisa, você não vai se arrepender :)</small></p>
+      </h1>
+      <p class="text-center"><a class="btn btn-orange" [routerLink]="['../products']"><i class="fa fa-shopping-cart"></i> Leve-me para as belezuras !</a></p>
+    </div>
+
+    <div class="product-list">
+      <div class="row" *ngFor="let item of itemList; let i = index">
+        <div class="meta-left">
+        <button class="btn btn-flat btn-danger btn-trash" type="button" (click)="removeProduct(item)"> <i class="fa fa-trash"></i> </button>
+        </div>
+        <section class="product">
+          <div class="product-body">
+            <div class="product-image">
+              <img src="{{item.Imagem}}">
+            </div>
+            <div class="meta-left">
+              <span class="title"> {{item.Nome}} </span>
+              <span class="price"> R$ {{item.Valor}} </span>
+            </div>
+            <div class="meta-right">
+              <div class="spinner">
+                <div class="sub" (click)="decreaseQty(item)">-</div><input type="number" min="1" max="100" value="{{item.Quantidade}}" />
+                <div class="add" (click)="increaseQty(item)">+</div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="row meta-total" [hidden]="itemList.length === 0">
+      <div class="col-sm-6 col-lg-6">
+        <h3> Total: </h3>
+      </div>
+      <div class="col-sm-6 col-lg-6">
+        <h3 class="total"> R$ {{totalAmount}} </h3>
+      </div>
+    </div>
+
+    <div class="row p20 text-center" [hidden]="itemList.length === 0">
+      <div class="col-sm-6 col-lg-4 offset-lg-1">
+        <button class="btn btn-flat btn-danger" type="button" (click)="cancelOrder()"> Cancelar pedido </button>
+      </div>
+      <div class="col-sm-6 col-lg-4 offset-lg-2">
+        <button class="btn btn-flat btn-success" type="button" (click)="finishOrder()"> Finalizar pedido </button>
+      </div>
+    </div>
+
+  </div>
+</div>
