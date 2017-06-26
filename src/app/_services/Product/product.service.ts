@@ -16,12 +16,16 @@ export class ProductService {
     return this.http.post(this.config.apiUrl + '/api/products', product);
   }
 
-  update(product: Product) {
-    return this.http.put(this.config.apiUrl + '/api/products' + product._id, product);
+  update(product: any) {
+    return this.http.put(this.config.apiUrl + '/api/products', product);
   }
 
-  delete(_id: string) {
-    return this.http.delete(this.config.apiUrl + '/api/products' + _id);
+  delete(id: number) {
+    return this.http.delete(this.config.apiUrl + '/api/products/' + id);
+  }
+
+  getById(id: number) {
+    return this.http.get(this.config.apiUrl + '/api/products/' + id).map((response: Response) => response.json());
   }
 
   getAll(ativo: boolean) {

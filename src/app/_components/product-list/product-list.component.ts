@@ -12,7 +12,7 @@ import { UserService } from '../../_services/User/user.service';
 })
 export class ProductListComponent implements OnInit {
 
-  user: any;
+  user: any = {};
 
   constructor(private _prodService: ProductService,
               private router: Router,
@@ -32,8 +32,14 @@ export class ProductListComponent implements OnInit {
         }
       );
 
-      this.user = JSON.parse(this._userService.getUser());
-
+      this._userService.getUser().subscribe(
+        data => {
+          this.user = data;
+        },
+        error => {
+          console.log(error);
+        }
+      )
 
       if (this.user.Admin) {
         this._prodService.getAll(false)

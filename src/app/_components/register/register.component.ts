@@ -80,6 +80,7 @@ export class RegisterComponent implements OnInit {
 
 
   register() {
+  
     this.userService.create(this.model).subscribe(
       response => {
         this.alertService.success("Parabéns, tudo certo !");

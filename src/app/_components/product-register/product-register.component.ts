@@ -12,13 +12,33 @@ import { ProductService } from '../../_services/Product/product.service';
 export class ProductRegisterComponent implements OnInit {
 
   private product: any = {};
+  private id: number;
+  private isEdit: boolean = false;
 
   constructor(private alert: AlertService,
               private _productService: ProductService,
-              private route: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.product.Imagem = this._productService.getNoImageDataURL();
+
+    this.route.params.subscribe(
+      params => {
+        this.id = +params['id'];
+        this._productService.getById(+params['id']).subscribe(
+          data => {
+            this.product = JSON.parse(data);
+            this.isEdit = true;
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }
+    );
+
+
   }
 
   handleImageSelect(event) {
@@ -49,13 +69,46 @@ export class ProductRegisterComponent implements OnInit {
   }
 
   addProduct() {
-    this._productService.create(this.product).subscribe(
+    if (!this.isEdit) {
+      this._productService.create(this.product).subscribe(
+        data => {
+          this.alert.success("Criado com sucesso !");
+          this.router.navigate(['../product-list'], { relativeTo: this.route });
+        },
+        error => {
+          this.alert.error("Erro ao criar o produto ! Tente novamente, por favor");
+        }
+      );
+    }
+    else {
+      this.editProduct();
+    }
+  }
+
+  editProduct() {
+    this._productService.update(this.product).subscribe(
       data => {
-        this.alert.success("Criado com sucesso !!!");
-        this.route.navigate(['../product-list']);
+        this._productService.getById(this.product.Codigo).subscribe(
+          prod => {
+            this.product = JSON.parse(prod);
+          }
+        )      
+        this.alert.success("Editado com sucesso !");
       },
       error => {
-        this.alert.error("Erro ao criar o produto ! Tente novamente, por favor");
+        console.log(error);
+      }
+    );
+  }
+
+  deleteProduct() {
+    this._productService.delete(this.id).subscribe(
+      data => {
+          this.alert.success("Excluído com sucesso !");
+          this.router.navigate(['../../product-list'], { relativeTo: this.route });
+      },
+      error => {
+        this.alert.error(error);
       }
     )
   }

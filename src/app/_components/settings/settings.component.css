@@ -1,0 +1,39 @@
+
+.form-group {
+    padding: 10px;
+}
+
+.input-file {
+    border: 1px solid #ccc;
+    padding: 2px;
+    width: 100%;
+}
+
+.col-form-label {
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+.btn-flat {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;    
+    border-radius: 0px;
+    border: 0px;
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+    vertical-align: middle;
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12pt;
+}
+
+.btn-success {
+    background-color: #99ED8D;
+}
+
+.btn-success:hover {
+    background-color: #6AD15D;
+}
+

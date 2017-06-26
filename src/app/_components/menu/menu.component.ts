@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { UserService } from '../../_services/User/user.service';
+import { OrderService } from '../../_services/Order/order.service';
+import { Product } from '../../_models/product';
 
 
 @Component({
@@ -14,20 +16,35 @@ import { UserService } from '../../_services/User/user.service';
 })
 export class MenuComponent implements OnInit, OnChanges {
 
-  @Input()
-  data: any;
+  @Input() data: any = {};
+  user: any = {};
 
-  user: any;
+  public cartItemsObservable: Observable<any[]>;
+  public cartItems: any[];
 
   constructor(private _userService: UserService,
-              private router: Router) { }
+              private _orderService: OrderService,
+              private router: Router) {
+                
+    this.cartItemsObservable = this._orderService.getProducts();
+
+    this.cartItemsObservable.subscribe(
+      data => {
+        this.cartItems = data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+                
+  }
 
   ngOnInit() {
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['data']) {
-      this.user = JSON.parse(this.data);
+      this.user = this.data;
     }
   }
 

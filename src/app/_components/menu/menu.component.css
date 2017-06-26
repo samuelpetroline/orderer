@@ -69,12 +69,18 @@
 .sidebar .nav-login {
   width: 200px;
   height: 200px;
-  background-image: url("../../../assets/img/user.jpg");
-  background-size: cover;
   display: block;
   margin: 0 auto;
   border-radius: 50%;
   border: 2px solid #ebebeb;
+  overflow: hidden;
+}
+
+.sidebar .nav-login>a>img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: all .25s ease;
 }
 
 .sidebar .nav-user {
@@ -97,9 +103,30 @@
   padding-right: 5px;
 }
 
-.nav-user > a.no-style {
+.nav-user>a.no-style {
   text-decoration: none;
   color: #ebebeb;
-  width:  100%;
+  width: 100%;
   height: 100%;
+}
+
+.nav .nav-item .nav-link .badge {
+  float: right;
+  margin-top: 4px;
+}
+
+.badge {
+  display: inline-block;
+  padding: .25em .4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.badge-info {
+  background-color: #e74c3c;
 }

@@ -12,8 +12,6 @@ import { AuthenticationService } from '../../_services/Authentication/authentica
 })
 export class LoginComponent implements OnInit {
 
-  @ViewChild('login') loginButton;
-
   private isLogging: boolean = false;
   model: any = {};
   returnUrl: string;
@@ -36,8 +34,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.isLogging = true;
-
-    console.log(this.loginButton);
 
     this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(

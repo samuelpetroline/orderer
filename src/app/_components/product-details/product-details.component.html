@@ -1,3 +1,135 @@
-<p>
-  ué
-</p>
+<div class="row">
+  <div class="col-sm-12 col-lg-12">
+
+    <div class="row">
+      <div class="col-sm-6 col-lg-6">
+        <a role="button" [routerLink]="['../../product-list']" class="btn btn-flat"><i class="fa fa-chevron-left" aria-hidden="true"></i>  VOLTAR</a >
+      </div>
+      <div class="col-sm-6 col-lg-6 ">
+        <a role="button" [hidden]="!user.Admin" [routerLink]="['../../product-register', product.Codigo]" class="btn btn-flat btn-edit pull-right"><i class="fa fa-edit" aria-hidden="true"></i>  EDITAR</a >
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-lg-5">
+        <div class="image">
+          <img src="{{product.Imagem}}" />
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-7">
+        <div class="informations">
+          <div class="title">
+            {{product.Nome}}
+          </div>
+
+          <div class="description">
+            <p> {{product.Descricao}} </p>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-7 col-lg-7">
+              <div class="price">
+                <p> R$ {{product.Valor}} </p>
+              </div>
+
+              <fieldset class="rating">
+                <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half"
+                  title="Pretty good - 4.5 stars"></label>
+                <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half"
+                  title="Meh - 3.5 stars"></label>
+                <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half"
+                  title="Kinda bad - 2.5 stars"></label>
+                <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half"
+                  title="Meh - 1.5 stars"></label>
+                <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+              </fieldset>
+            </div>
+            <div class="col-sm-5 col-lg-5 button">
+              <button type="submit" class="btn btn-flat" [hidden]="user.Admin" (click)="addToCart($event, product)">
+                Adicionar ao carrinho
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="separator"></div>
+
+    <section class="comments">
+      <h2> Comentários (25) </h2>
+
+      <!-- TODO: Fazer os comentários em um component -->
+      <div class="comment-list">
+        <div class="comment">
+          <article class="comment-body">
+            <div class="user-image">
+              <img src="http://via.placeholder.com/100x100" style="width: 100%; height: 100%;">
+            </div>
+            <div class="meta">
+              <span class="user"> John Doe </span>
+              <span class="date"> 25/07/2017 15:25:45 </span>
+              <fieldset class="rating">
+                <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half"
+                  title="Pretty good - 4.5 stars"></label>
+                <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half"
+                  title="Meh - 3.5 stars"></label>
+                <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half"
+                  title="Kinda bad - 2.5 stars"></label>
+                <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half"
+                  title="Meh - 1.5 stars"></label>
+                <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+              </fieldset>
+            </div>
+            <div class="content clearfix">
+              <p>
+                Mussum Ipsum, cacilds vidis litro abertis. Não sou faixa preta cumpadi, sou preto inteiris, inteiris. Copo furadis é disculpa
+                de bebadis, arcu quam euismod magna. Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis
+                e fermentis. Si num tem leite então bota uma pinga aí cumpadi! Todo mundo vê os porris que eu tomo, mas ninguém
+                vê os tombis que eu levo! Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate dapibus.
+                Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae iaculis nisl. Mais vale um bebadis
+                conhecidiss, que um alcoolatra anonimis.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </section>
+
+
+  </div>
+</div>
+
+<!--
+<article id="comment-204110" class="comment-body">
+  <div class="avatar-box">
+    <img alt="" src="https://secure.gravatar.com/avatar/644c9ed2d5a71c9b382b015ecd43f47d?s=50&amp;r=g" srcset="https://secure.gravatar.com/avatar/644c9ed2d5a71c9b382b015ecd43f47d?s=100&amp;r=g 2x"
+      class="avatar avatar-50 photo" height="50" width="50"> </div>
+  
+
+  <div class="comment-meta commentmetadata">
+    <span class="fn">Iain</span> <span class="comment_date">
+					January 26, 2016				</span>
+  </div>
+  
+
+
+  <div class="comment-content clearfix">
+    <p>Anyone getting errors like:</p>
+    <p>Could not copy file. Divi/includes/builder/languages/ms_MY.po</p>
+    <p>When they try to install?</p>
+
+  </div>
+  
+</article>
+-->

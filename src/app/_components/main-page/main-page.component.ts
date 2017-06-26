@@ -10,12 +10,22 @@ import { Subject } from 'rxjs/Subject';
 })
 export class MainPageComponent implements OnInit {
 
-  user: any;
+  user: any = {};
 
-  constructor(private _userService: UserService) { }
+  constructor(private _userService: UserService) {
+    this._userService.getUser().subscribe(
+      data => {
+        this.user = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+   }
 
   ngOnInit() {
-    this.user = this._userService.getUser();
+    
+
   }
 
 }

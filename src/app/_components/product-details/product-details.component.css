@@ -1,0 +1,210 @@
+.separator {
+  padding: 20px;
+  border-bottom: 1px solid #f9bf7d;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  padding: 20px 10px 20px 10px;
+}
+
+.image>img {
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+  max-width: 715px;
+  max-height: 435px;
+}
+
+.title {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 32pt;
+  border-bottom: 1px solid #f9bf7d;
+  padding: 20px 0px 10px 20px;
+}
+
+.description {
+  height: 150px;
+}
+
+.description>p {
+  text-align: left;
+  text-justify: inter-word;
+  padding: 20px 0px 10px 20px;
+  color: #868585;
+}
+
+.price {
+  padding: 20px 0px 0px 20px;
+}
+
+.price>p {
+  color: #000;
+  font-size: 25pt;
+  font-weight: bold;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.rating {
+  border: none;
+  float: left;
+  padding: 0px 0px 10px 20px;
+  margin-top: -7px;
+  display: inline-block;
+}
+
+.rating>input {
+  display: none;
+}
+
+.rating>label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating>.half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.rating>label {
+  color: #ddd;
+  float: right;
+}
+
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating>input:checked~label,
+
+/* show gold star when clicked */
+
+.rating:not(:checked)>label:hover,
+
+/* hover current star */
+
+.rating:not(:checked)>label:hover~label {
+  color: #FFD700;
+}
+
+
+/* hover previous stars in list */
+
+.rating>input:checked+label:hover,
+
+/* hover current star when changing rating */
+
+.rating>input:checked~label:hover,
+.rating>label:hover~input:checked~label,
+
+/* lighten current selection */
+
+.rating>input:checked~label:hover~label {
+  color: #FFED85;
+}
+
+.button {
+  text-align: center;
+  top: 25px;
+}
+
+.btn-flat {
+  border-radius: 0 0;
+  background: #f9bf7d;
+  border-style: none;
+  width: 200px;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  -ms-transition: background 0.3s ease-in-out;
+  -o-transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out;
+  color: #fff;
+  margin: 20px 0px 10px 10px;
+}
+
+.btn-flat:hover {
+  cursor: pointer;
+}
+
+.btn-edit {
+  background-color: #e74c3c;
+}
+
+
+/** COMENTÁRIOS */
+
+.comments>h2 {
+  padding: 20px 0px 20px 10px;
+}
+
+.comment-list {
+  padding: 10px;
+}
+
+.comment {
+  background-color: #ebebeb;
+  padding: 20px;
+  display: block;
+  width: 100%;
+}
+
+.user-image {
+  margin-right: 20px;
+}
+
+article {
+  display: block;
+}
+
+.meta {
+  float: left;
+}
+
+.user-image,
+.user-image img {
+  width: 100px;
+  height: 100px;
+  float: left;
+  clear: right;
+  overflow: hidden;
+}
+
+.user {
+  float: left;
+  clear: right;
+  font-size: 20px;
+  font-weight: 500;
+  color: #f9bf7d;
+}
+
+.date {
+    float: left;
+    clear: left;
+    color: #c9c9c9;
+    font-size: 15px;
+    font-weight: 400;
+    padding-top: 5px;
+}
+
+.meta > .rating {
+    float: left;
+    clear: left;
+    padding: 5px 0px 0px 0px;
+}
+
+.content {
+    padding-top: 20px;
+    line-height: 26px;
+    color: #767474;
+} 
+
+.clearfix {
+    display: block;
+    content: '';
+    clear: both;
+}

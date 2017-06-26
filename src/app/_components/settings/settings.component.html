@@ -1,37 +1,155 @@
-<h1 id="gfd">
+<div class="row">
+  <div class="col-sm-12 col-lg-12">
 
 
-  GFDGFDGFDGFDGDFGDF FODA -SE
-
-</h1>
-<h1 id="gf">
+    <form class="form-horizontal" #f="ngForm" (ngSubmit)="f.form.valid && updateUser()" novalidate>
+      <fieldset>
 
 
-  GFDGFDGFDGFDGDFGDF FODA -SE
+        <div class="form-group row">
+          <div class="col-md-4 offset-md-3">
+            <img class="img-thumbnail" alt="300x300" style="width: 340px; height: 300px;" src="{{user.Imagem}}">
+          </div>
+        </div>
 
-</h1>
-<h1 id="gfg">
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label" for="form-imagem">Imagem</label>
+          <div class="col-md-5">
+            <input id="form-imagem" name="form-imagem" (change)="handleImageSelect($event)" accept="image/*" class="input-file" type="file">
+          </div>
+        </div>
 
+        <div class="form-group row" [ngClass]="{'has-danger': nome.errors && (nome.dirty || nome.touched)}">
+          <label class="col-sm-2 col-form-label" for="form-name">Nome</label>
+          <div class="col-md-5">
+            <input id="form-name" name="form-name" type="text" [(ngModel)]="user.Nome" #nome="ngModel" maxlength="30" placeholder="Nome completo"
+              class="form-control input-md" required>
 
-  GFDGFDGFDGFDGDFGDF FODA -SE
+            <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="form-control-feedback ">
+              <div>
+                Você tem um nome (espero...) Por favor digite-o :)
+              </div>
+            </div>
+          </div>
+        </div>
 
-</h1>
-<h1 id="rer">
+        <div class="form-group row" [ngClass]="{'has-danger': email.errors && (email.dirty || email.touched)}">
+          <label class="col-sm-2 col-form-label" for="form-email">Email</label>
+          <div class="col-md-5">
+            <input id="form-email" name="form-email" type="email" [(ngModel)]="user.Email" #email="ngModel" maxlength="30" placeholder="Email"
+              class="form-control input-md" required>
 
+            <div *ngIf="email.errors && (email.dirty || email.touched)" class="form-control-feedback ">
+              <div>
+                Digite um email válido
+              </div>
+            </div>
+          </div>
+        </div>
 
-  GFDGFDGFDGFDGDFGDF FODA -SE
+        <div class="form-group row" [ngClass]="{'has-danger': cpf.errors && (cpf.dirty || cpf.touched)}">
+          <label class="col-sm-2 col-form-label" for="form-cpf">CPF</label>
+          <div class="col-md-5">
+            <input type="text" name="form-cpf" placeholder="CPF" class="form-inputs form-control" id="form-cpf" [(ngModel)]="user.Cpf"
+              #cpf="ngModel" minlength="11" maxlength="14" mask="999.999.999-99" disabled required>
+          </div>
+        </div>
 
-</h1>
-<h1 id="trt">
+        <div class="form-group row" [ngClass]="{'has-danger': telefone.errors && (telefone.dirty || telefone.touched)}">
+          <label class="col-sm-2 col-form-label" for="form-telefone">Telefone</label>
+          <div class="col-md-5">
+            <input type="text" name="form-telefone" placeholder="Telefone" class="form-inputs form-control" id="form-telefone" [(ngModel)]="user.Telefone"
+              #telefone="ngModel" mask="(99) 9999-9999" required>
 
+            <div *ngIf="telefone.errors && (telefone.dirty || telefone.touched)" class="form-control-feedback ">
+              <div>
+                Digite um telefone válido.
+              </div>
+            </div>
+          </div>
+        </div>
 
-  GFDGFDGFDGFDGDFGDF FODA -SE
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label" for="form-telefone">Endereço</label>
+          <div class="col-md-5">
+            <fieldset class="form-styles-s2">
+              <div class="form-group" [ngClass]="{'has-danger': cep.errors && (cep.dirty || cep.touched)}">
+                <label class="sr-only" for="form-cep">CEP</label>
+                <input type="text" name="form-cep" placeholder="CEP" class="form-inputs form-control" id="form-cep" [(ngModel)]="user.Endereco.Cep"
+                  #cep="ngModel" (keyup)="consultarCEP(cep.value)" required minlength="8" maxlength="9" mask="99999-999">
 
-</h1>
+                <div *ngIf="cep.errors && (cep.dirty || cep.touched)" class="form-control-feedback">
+                  <div [hidden]="!cep.errors.required">
+                    Digite um CEP !
+                  </div>
+                  <div [hidden]="!cep.errors.minlength || !cep.errors.maxlength">
+                    O CEP tem que ter exatamente 9 caracteres!
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-8 col-md-8">
+                  <div class="form-group">
+                    <label class="sr-only" for="form-logradouro">Logradouro</label>
+                    <input type="text" name="form-logradouro" placeholder="Logradouro" class="form-inputs form-control" id="form-logradouro"
+                      [(ngModel)]="user.Endereco.Logradouro" #logradouro="ngModel" required disabled>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                  <div class="form-group">
+                    <label class="sr-only" for="form-bairro">Bairro</label>
+                    <input type="text" name="form-bairro" placeholder="Bairro" class="form-inputs form-control" id="form-bairro" [(ngModel)]="user.Endereco.Bairro"
+                      #bairro="ngModel" required disabled>
+                  </div>
+                </div>
+              </div>
 
-<h1 id="user">
+              <div class="row">
+                <div class="col-sm-8 col-md-8">
+                  <div class="form-group">
+                    <label class="sr-only" for="form-cidade">Cidade</label>
+                    <input type="text" name="form-cidade" placeholder="Cidade" class="form-inputs form-control" id="form-cidade" [(ngModel)]="user.Endereco.Localidade"
+                      #cidade="ngModel" required disabled>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                  <div class="form-group">
+                    <label class="sr-only" for="form-uf">UF</label>
+                    <input type="text" name="form-uf" placeholder="UF" class="form-inputs form-control" id="form-uf" [(ngModel)]="user.Endereco.Uf"
+                      #uf="ngModel" required disabled>
+                  </div>
+                </div>
+              </div>
 
+              <div class="row">
+                <div class="col-sm-4 col-md-4">
+                  <div class="form-group">
+                    <label class="sr-only" for="form-numero">Número</label>
+                    <input type="text" name="form-numero" placeholder="Nº" class="form-inputs form-control" id="form-numero" [(ngModel)]="user.Endereco.Numero"
+                      #numero="ngModel" required>
+                  </div>
+                </div>
+                <div class="col-sm-8 col-md-8">
+                  <div class="form-group">
+                    <label class="sr-only" for="form-complemento">Complemento</label>
+                    <input type="text" name="form-complemento" placeholder="Complemento" class="form-inputs form-control" id="form-complemento"
+                      [(ngModel)]="user.Endereco.Complemento" #complemento="ngModel">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-12 col-md-5 offset-md-2">
+            <button type="submit" id="OK" name="OK" class="btn btn-success btn-flat">
+              Salvar
+            </button>
+          </div>
+        </div>
 
-  GFDGFDGFDGFDGDFGDF FODA -SE
+      </fieldset>
+    </form>
+  </div>
 
-</h1>
+</div>

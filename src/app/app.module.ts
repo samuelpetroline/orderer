@@ -15,6 +15,7 @@ import { AlertService } from './_services/Alert/alert.service';
 import { AuthenticationService } from './_services/Authentication/authentication.service';
 import { UserService } from './_services/User/user.service';
 import { CepService } from './_services/Cep/cep.service';
+import { OrderService } from './_services/Order/order.service';
 
 import { AuthGuard } from './_guards/auth.guard';
 
@@ -35,6 +36,9 @@ import { SafeHtml } from './_pipes/SafeHTML/safe-html.pipe';
 import { ProductRegisterComponent } from './_components/product-register/product-register.component';
 import { ProductListComponent } from './_components/product-list/product-list.component';
 import { FilterListPipe } from './_pipes/FilterList/filter-list.pipe';
+import { OrderListComponent } from './_components/order-list/order-list.component';
+import { OrderDetailsComponent } from './_components/order-details/order-details.component';
+import { CartComponent } from './_components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,10 @@ import { FilterListPipe } from './_pipes/FilterList/filter-list.pipe';
     SafeHtml,
     ProductRegisterComponent,
     ProductListComponent,
-    FilterListPipe
+    FilterListPipe,
+    OrderListComponent,
+    OrderDetailsComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +79,8 @@ import { FilterListPipe } from './_pipes/FilterList/filter-list.pipe';
     AuthGuard,
     AuthenticationService,
     UserService,
-    CepService
+    CepService,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

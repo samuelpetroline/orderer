@@ -1,7 +1,7 @@
 <div class="form-group row">
   <label class="col-sm-12 col-form-label" for="OK"></label>
   <div class="col-md-2">
-    <a role="button" [routerLink]="['../product-list']" class="btn btn-success btn-flat"><i class="fa fa-chevron-left" aria-hidden="true"></i>  VOLTAR</a >
+    <a role="button" [routerLink]="['/main/products/product-list']" class="btn btn-flat btn-success"><i class="fa fa-chevron-left" aria-hidden="true"></i>  VOLTAR</a >
   </div>
 </div>
 <div class="row">
@@ -71,8 +71,18 @@
         </div>
 
         <div class="form-group row">
-          <div class="col-sm-12 col-md-5 offset-md-2">
-            <button type="submit" id="OK" name="OK" class="btn btn-success btn-flat">Adicionar</button>
+          <div class="col-sm-12 offset-md-2" [ngClass]="{'col-md-3': isEdit, 'col-md-5': !isEdit}">
+            <button type="submit" id="OK" name="OK" class="btn btn-success btn-flat">
+              <div [ngSwitch]="isEdit">
+                <div *ngSwitchCase="true">Editar</div>
+                <div *ngSwitchDefault>Adicionar</div>
+              </div>
+            </button>
+          </div>
+          <div class="col-sm-12 col-md-3" [hidden]="!isEdit">
+            <button type="button" id="OK" name="OK" class="btn btn-danger btn-flat" (click)="deleteProduct()">
+              Excluir             
+            </button>
           </div>
         </div>
 

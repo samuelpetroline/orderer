@@ -10,7 +10,10 @@ import { ProductsComponent } from '../../_components/products/products.component
 import { ProductListComponent } from '../../_components/product-list/product-list.component';
 import { ProductDetailsComponent } from '../../_components/product-details/product-details.component';
 import { ProductRegisterComponent } from '../../_components/product-register/product-register.component';
+import { CartComponent } from '../../_components/cart/cart.component';
 import { SettingsComponent } from '../../_components/settings/settings.component';
+import { OrderListComponent } from '../../_components/order-list/order-list.component';
+import { OrderDetailsComponent } from '../../_components/order-details/order-details.component';
 
 const mainPageRoutes: Routes = 
 [
@@ -31,8 +34,22 @@ const mainPageRoutes: Routes =
             },
             {
                 path: 'orders',
-                pathMatch: 'full',
-                component: OrdersComponent
+                component: OrdersComponent,
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'order-list'
+                    },
+                    {
+                        path: 'order-list',
+                        component: OrderListComponent
+                    },
+                    {
+                        path: 'order-details',
+                        component: OrderDetailsComponent
+                    }
+                ]
             },
             {
                 path: 'products',
@@ -54,9 +71,18 @@ const mainPageRoutes: Routes =
                     {
                         path: 'product-register',
                         component: ProductRegisterComponent              
-                    },            
+                    },
+                    {
+                        path: 'product-register/:id',
+                        component: ProductRegisterComponent              
+                    }       
                 ]
-            },            
+            },           
+            {
+                path: 'cart',
+                pathMatch: 'full',
+                component: CartComponent
+            },
             {
                 path: 'settings',
                 pathMatch: 'full',
