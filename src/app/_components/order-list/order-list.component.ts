@@ -9,17 +9,32 @@ import { OrderService } from '../../_services/Order/order.service';
 })
 export class OrderListComponent implements OnInit {
 
-  private orderList: any[];
+  private user: any = {};
+  private orderList: any[] = [];
 
   constructor(private _orderService: OrderService) { 
-    this._orderService.getOrdersByUser(JSON.parse(localStorage.getItem('user')).Codigo).subscribe(
-      data => {
-        this.orderList = JSON.parse(data.json());
-      },
-      error => {
-        console.log(error);
-      }
-    )
+    this.user = JSON.parse(localStorage.getItem('user'));
+
+    if (!this.user.Admin) {    
+      this._orderService.getOrdersByUser(this.user.Codigo).subscribe(
+        data => {
+          this.orderList = JSON.parse(data.json());
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
+    else {
+      this._orderService.getAllOrders().subscribe(
+        data => {
+          this.orderList = JSON.parse(data.json());
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
   }
 
   ngOnInit() {

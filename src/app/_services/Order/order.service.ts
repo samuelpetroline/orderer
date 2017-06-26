@@ -96,4 +96,12 @@ export class OrderService {
     return this.http.get(this.config.apiUrl + '/api/orders/user/' + id, this.options);
   }
 
+  getOrderById(id: number) {
+    return this.http.get(this.config.apiUrl + '/api/orders/' + id, this.options);
+  }
+
+  getAllOrders() {
+    return this.http.get(this.config.apiUrl + '/api/orders', this.options);
+  }
+
 }

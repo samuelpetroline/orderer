@@ -70,18 +70,18 @@
           </div>
         </div>
 
-        <div class="form-group row">
-          <div class="col-sm-12 offset-md-2" [ngClass]="{'col-md-3': isEdit, 'col-md-5': !isEdit}">
+        <div class="form-group row">          
+          <div class="col-sm-12 col-md-3 offset-md-2" [hidden]="!isEdit">
+            <button type="button" id="OK" name="OK" class="btn btn-danger btn-flat" (click)="deleteProduct()">
+              Excluir             
+            </button>
+          </div>
+          <div class="col-sm-12 " [ngClass]="{'col-md-3 ': isEdit, 'col-md-5 offset-md-2': !isEdit}">
             <button type="submit" id="OK" name="OK" class="btn btn-success btn-flat">
               <div [ngSwitch]="isEdit">
                 <div *ngSwitchCase="true">Editar</div>
                 <div *ngSwitchDefault>Adicionar</div>
               </div>
-            </button>
-          </div>
-          <div class="col-sm-12 col-md-3" [hidden]="!isEdit">
-            <button type="button" id="OK" name="OK" class="btn btn-danger btn-flat" (click)="deleteProduct()">
-              Excluir             
             </button>
           </div>
         </div>

@@ -17,13 +17,13 @@
                 <div class="form-group" [ngClass]="{'has-danger': username.errors && (username.dirty || username.touched)}">
                   <label class="sr-only" for="form-user">Usuário</label>
                   <input type="text" name="form-user" placeholder="Usuário" class="form-inputs form-control" id="form-user" [(ngModel)]="model.username"
-                    #username="ngModel" minlength="6" maxlength="20" required>
+                    #username="ngModel" minlength="4" maxlength="20" required>
                   <div *ngIf="username.errors && (username.dirty || username.touched)" class="form-control-feedback">
                     <div [hidden]="!username.errors.required">
                       É necessário digitar o usuário
                     </div>
                     <div [hidden]="!username.errors.minlength">
-                      Usuário tem que ter no mínimo 6 caracteres :)
+                      Usuário tem que ter no mínimo 4 caracteres :)
                     </div>
                     <div [hidden]="!username.errors.maxlength">
                       O usuário não pode ser tão longo. Desculpa :(
@@ -126,7 +126,7 @@
                     <div class="form-group" [ngClass]="{'has-danger': telefone.errors && (telefone.dirty || telefone.touched)}">
                       <label class="sr-only" for="form-telefone">Telefone</label>
                       <input type="text" name="form-telefone" placeholder="Telefone" class="form-inputs form-control" id="form-telefone" [(ngModel)]="model.telefone"
-                        #telefone="ngModel" mask="(99) 9999-9999" required>
+                        #telefone="ngModel" mask="(99) 9999-9999" minlength="10" maxlength="14" required>
 
                       <div *ngIf="telefone.errors && (telefone.dirty || telefone.touched)" class="form-control-feedback ">
                         <div>

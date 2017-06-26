@@ -1,3 +1,42 @@
-<p>
-  order-details works!
-</p>
+<div class="row">
+  <div class="col-sm-12 col-lg-12">
+
+    <div class="row">
+      <div class="col-sm-6 col-lg-6">
+        <a role="button" [routerLink]="['../../order-list']" class="btn btn-flat btn-orange"><i class="fa fa-chevron-left" aria-hidden="true"></i>  VOLTAR</a >
+      </div>      
+    </div>
+
+    <div class="order" id="{{order.Codigo}}">
+      <article class="order-body">
+        <div class="meta-left">
+          <h3 class="name"> Pedido #{{order.Codigo}} </h3>
+          <span class="date"> {{order.Data}} </span>
+          <span class="price"> Total: R$ {{order.Valor}} </span>
+        </div>
+        <div class="status">
+          <button type="button" class="btn btn-flat" [ngClass]="{'btn-danger': order.Status == 'Pendente', 'btn-warning': order.Status == 'Pago', 'btn-default': order.Status == 'Esperando o produto ser retirado', 'btn-success': order.Status == 'Concluído'}">
+            {{order.Status}}
+      </button>
+        </div>
+        <div class="product-list clearfix">
+          <div *ngFor="let product of order.Produtos" class="product">
+            <div class="product-image">
+              <img src="{{product.Imagem}}" style="width: 140px; height: 100px;" />
+            </div>
+            <div class="meta-left">
+              <span class="name"> {{product.Nome}} </span>
+              <span class="price"> R$ {{product.Valor}} </span>
+            </div>
+            <div class="meta-right">
+              <h5 class="qty"> x {{product.Quantidade }} </h5>
+            </div>
+            <div class="content clearfix">
+              <p>{{product.Descricao}}</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>

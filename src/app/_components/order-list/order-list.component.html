@@ -1,5 +1,15 @@
 <section class="orders">
 
+  <div class="jumbotron" [hidden]="orderList.length > 0">
+      <img class="empty-order-img" src="../../../assets/img/empty_order.png" />
+      <h1 class="text-center">Você ainda não tem nenhum pedido
+        <p> </p>
+        <p><small class="text-center">Mas não tem problema, é fácil começar um. Clique no botão abaixo e se divirta</small></p>
+      </h1>
+      <p class="text-center"><a class="btn btn-flat btn-orange" [routerLink]="['../../products']"><i class="fa fa-shopping-cart"></i> Leve-me para as belezuras !</a></p>
+    </div>
+
+
   <!-- TODO: Fazer os pedidos em um component -->
   <div class="order-list" >
     <div class="order" *ngFor="let order of orderList" id="{{order.Codigo}}" >
@@ -15,7 +25,7 @@
           </button>          
         </div>
         <div class="details">
-          <a role="button" [routerLink]="['order-details', order.Codigo]" class="btn btn-warning btn-flat">Detalhes</a>
+          <a role="button" [routerLink]="['../order-details', order.Codigo]" class="btn btn-warning btn-flat">Detalhes   <i class="fa fa-chevron-right" aria-hidden="true"></i> </a>
         </div>
         <div class="clearfix">          
         </div>
