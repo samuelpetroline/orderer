@@ -11,7 +11,6 @@ export class AuthenticationService {
 
     constructor(private http: Http, private config: AppConfig, private userService: UserService) {}
      
- 
     login(username: string, password: string) {
         return this.http.post(this.config.apiUrl + '/api/users/authenticate/' + username + '/' + password, "")
             .map((response: Response) => {

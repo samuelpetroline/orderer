@@ -12,7 +12,7 @@ import { AuthenticationService } from '../../_services/Authentication/authentica
 })
 export class LoginComponent implements OnInit {
 
-  private isLogging: boolean = false;
+  private isLogging = false;
   model: any = {};
   returnUrl: string;
 
@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit {
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
-                    this.alertService.error(error._body);        
-                    this.isLogging = false;            
+                    this.alertService.error(error._body);
+                    this.isLogging = false;
                 });
   }
 
