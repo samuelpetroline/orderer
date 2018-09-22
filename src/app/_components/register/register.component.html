@@ -1,262 +1,270 @@
-<div class="container-fluid page">
+<div class="container-fluid register-page">
   <div class="row">
-    <div class="col-sm-12">
-      <div class="col-sm-6 offset-sm-3" *ngIf="step == 1">
-        <div class="form-box">
-          <!--  STEP 1 -->
-          <form role="form" class="registration-form"  #f="ngForm" novalidate>
-            <fieldset class="form-styles">
-              <div class="form-top">
-                <div class="form-top-left">
-                  <h3>CADASTRO</h3>
-                  <p>Nos diga como quer ser chamado:</p>
-                </div>
-              </div>
-              <div class="form-bottom">
-                <!-- USERNAME -->
-                <div class="form-group" [ngClass]="{'has-danger': username.errors && (username.dirty || username.touched)}">
-                  <label class="sr-only" for="form-user">Usuário</label>
-                  <input type="text" name="form-user" placeholder="Usuário" class="form-inputs form-control" id="form-user" [(ngModel)]="model.username"
-                    #username="ngModel" minlength="4" maxlength="20" required>
-                  <div *ngIf="username.errors && (username.dirty || username.touched)" class="form-control-feedback">
-                    <div [hidden]="!username.errors.required">
-                      É necessário digitar o usuário
-                    </div>
-                    <div [hidden]="!username.errors.minlength">
-                      Usuário tem que ter no mínimo 4 caracteres :)
-                    </div>
-                    <div [hidden]="!username.errors.maxlength">
-                      O usuário não pode ser tão longo. Desculpa :(
-                    </div>
-                  </div>
-                </div>
-                <!-- SENHA -->
-                <div class="form-group" [ngClass]="{'has-danger': senha.errors && (senha.dirty || senha.touched)}">
-                  <label class="sr-only" for="form-password">Senha</label>
-                  <input type="password" name="form-password" placeholder="Senha" class="form-inputs form-control" id="form-password" [(ngModel)]="model.senha"
-                    #senha="ngModel" minlength="6" maxlength="10" required validateEqual="password">
-
-                  <div *ngIf="senha.errors && (senha.dirty || senha.touched)" class="form-control-feedback">
-                    <div [hidden]="!senha.errors.required">
-                      Digite uma senha. Para sua segurança :)
-                    </div>
-                    <div [hidden]="!senha.errors.minlength">
-                      A senha tem que ter no mínimo 6 caracteres. Ninguém quer uma senha fácil, não é mesmo?
-                    </div>
-                    <div [hidden]="!senha.errors.maxlength">
-                      Senha não pode ter mais do que 10 caracteres
-                    </div>
-                  </div>
-                </div>
-                <!-- CONFIRMAR SENHA -->
-                <div class="form-group" [ngClass]="{'has-danger': confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)}">
-                  <label class="sr-only" for="form-confirm-password">Confirme a senha</label>
-                  <input type="password" name="form-confirm-password" placeholder="Confirme a senha" class="form-inputs form-control" id="form-confirm-password"
-                    [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel" minlength="6" maxlength="10" required validateEqual="password" reverse="true">
-
-                  <div *ngIf="confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)" class="form-control-feedback ">
-                    <div>
-                      As senhas não conferem
-                    </div>
-                  </div>
-                </div>
-
-                <button type="button" class="btn btn-step" (click)="previous()">< Voltar</button>
-                <button type="button" class="btn btn-step" (click)="next()" [disabled]="!f.form.valid">Próximo ></button>
-
-              </div>
-            </fieldset>
-          </form>
-        </div>
-      </div>
-      <div class="col-sm-10 offset-sm-1" *ngIf="step == 2">
-        <div class="form-box">
-          <!-- STEP 2 -->
-          <form role="form" class="registration-form" (ngSubmit)="f2.form.valid && register()" #f2="ngForm" novalidate>
+    <!--  STEP 1 -->
+    <div class="col-md-12 col-lg-6 offset-lg-3 bg-light full-height flex-center" *ngIf="step == 1">
+      <div class="form-box">
+        <form role="form" class="registration-form" #f="ngForm" novalidate>
+          <fieldset>
             <div class="form-top">
-              <div class="form-top-left">
-                <h3>INFORMAÇÕES</h3>
-                <p>Digite algumas informações para que possamos lhe conhecer melhor:</p>
+              <div class="text-center">
+                <h3>CADASTRO</h3>
+                <p>Nos diga como quer ser chamado:</p>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm-6 col-md-6 border-right">
-                <fieldset class="form-styles-s2">
-                  <div class="form-bottom">
-                    <!-- NOME COMPLETO -->
-                    <div class="form-group" [ngClass]="{'has-danger': nome.errors && (nome.dirty || nome.touched)}">
-                      <label class="sr-only" for="form-name">Nome completo</label>
-                      <input type="text" name="form-name" placeholder="Nome completo" class="form-inputs form-control" id="form-name" [(ngModel)]="model.nome"
-                        #nome="ngModel" required>
-
-                      <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="form-control-feedback ">
-                        <div>
-                          Você tem um nome (espero...) Por favor digite-o :)
-                        </div>
-                      </div>
-                    </div>
-                    <!-- EMAIL -->
-                    <div class="form-group" [ngClass]="{'has-danger': email.errors && (email.dirty || email.touched)}">
-                      <label class="sr-only" for="form-email">Email</label>
-                      <input type="email" name="form-email" placeholder="Email" class="form-inputs form-control" id="form-email" [(ngModel)]="model.email"
-                        #email="ngModel" required email>
-
-                      <div *ngIf="email.errors && (email.dirty || email.touched)" class="form-control-feedback ">
-                        <div>
-                          Digite um email válido
-                        </div>
-                      </div>
-                    </div>
-                    <!-- CPF / CNPJ -->
-                    <div class="form-group" [ngClass]="{'has-danger': cpf.errors && (cpf.dirty || cpf.touched)}">
-                      <label class="sr-only" for="form-cpf">CPF</label>
-                      <input type="text" name="form-cpf" placeholder="CPF" class="form-inputs form-control" id="form-cpf" [(ngModel)]="model.cpf"
-                        #cpf="ngModel" minlength="11" maxlength="14" mask="999.999.999-99" required>
-
-                      <div *ngIf="cpf.errors && cpf.dirty" class="form-control-feedback ">
-                        <div [hidden]="!cpf.errors.required">
-                          Digite um CPF
-                        </div>
-                        <div [hidden]="!cpf.errors.minlength || !cpf.errors.maxlength">
-                          O CPF tem que ter exatamente 14 caracteres!
-                        </div>
-                      </div>
-                    </div>
-                    <!-- TELEFONE -->
-                    <div class="form-group" [ngClass]="{'has-danger': telefone.errors && (telefone.dirty || telefone.touched)}">
-                      <label class="sr-only" for="form-telefone">Telefone</label>
-                      <input type="text" name="form-telefone" placeholder="Telefone" class="form-inputs form-control" id="form-telefone" [(ngModel)]="model.telefone"
-                        #telefone="ngModel" mask="(99) 9999-9999" minlength="10" maxlength="14" required>
-
-                      <div *ngIf="telefone.errors && (telefone.dirty || telefone.touched)" class="form-control-feedback ">
-                        <div>
-                          Digite um telefone válido.
-                        </div>
-                      </div>
-                    </div>
+            <div class="form-bottom">
+              <!-- USERNAME -->
+              <div class="form-group" [ngClass]="{'has-danger': username.errors && (username.dirty || username.touched)}">
+                <label class="sr-only" for="form-user">Usuário</label>
+                <input type="text" name="form-user" placeholder="Usuário" class="form-inputs form-control" id="form-user"
+                  [(ngModel)]="model.username" #username="ngModel" minlength="4" maxlength="20" required>
+                <div *ngIf="username.errors && (username.dirty || username.touched)" class="form-control-feedback">
+                  <div [hidden]="!username.errors.required">
+                    É necessário digitar o usuário
                   </div>
-                </fieldset>
+                  <div [hidden]="!username.errors.minlength">
+                    Usuário tem que ter no mínimo 4 caracteres :)
+                  </div>
+                  <div [hidden]="!username.errors.maxlength">
+                    O usuário não pode ser tão longo. Desculpa :(
+                  </div>
+                </div>
               </div>
-              <div class="col-sm-6 col-md-6">
-                <fieldset class="form-styles-s2">
-                  <div class="form-group" [ngClass]="{'has-danger': cep.errors && (cep.dirty || cep.touched)}">
-                    <label class="sr-only" for="form-cep">CEP</label>
-                    <input type="text" name="form-cep" placeholder="CEP" class="form-inputs form-control" id="form-cep" [(ngModel)]="model.endereco.cep"
-                      #cep="ngModel" (keyup)="consultarCEP(cep.value);" required minlength="8" maxlength="9" mask="99999-999">
+              <!-- SENHA -->
+              <div class="form-group" [ngClass]="{'has-danger': senha.errors && (senha.dirty || senha.touched)}">
+                <label class="sr-only" for="form-password">Senha</label>
+                <input type="password" name="form-password" placeholder="Senha" class="form-inputs form-control" id="form-password"
+                  [(ngModel)]="model.senha" #senha="ngModel" minlength="6" maxlength="10" required validateEqual="password">
 
-                    <div *ngIf="cep.errors && (cep.dirty || cep.touched)" class="form-control-feedback">
-                      <div [hidden]="!cep.errors.required">
-                        Digite um CEP !
-                      </div>
-                      <div [hidden]="!cep.errors.minlength || !cep.errors.maxlength">
-                        O CEP tem que ter exatamente 9 caracteres!
-                      </div>
-                    </div>
+                <div *ngIf="senha.errors && (senha.dirty || senha.touched)" class="form-control-feedback">
+                  <div [hidden]="!senha.errors.required">
+                    Digite uma senha. Para sua segurança :)
                   </div>
-                  <div class="row">
-                    <div class="col-sm-8 col-md-8">
-                      <div class="form-group">
-                        <label class="sr-only" for="form-logradouro">Logradouro</label>
-                        <input type="text" name="form-logradouro" placeholder="Logradouro" class="form-inputs form-control" id="form-logradouro"
-                          [(ngModel)]="model.endereco.logradouro" #logradouro="ngModel" required disabled>
-                      </div>
-                    </div>
-                    <div class="col-sm-4 col-md-4">
-                      <div class="form-group">
-                        <label class="sr-only" for="form-bairro">Bairro</label>
-                        <input type="text" name="form-bairro" placeholder="Bairro" class="form-inputs form-control" id="form-bairro" [(ngModel)]="model.endereco.bairro"
-                          #bairro="ngModel" required disabled>
-                      </div>
-                    </div>
+                  <div [hidden]="!senha.errors.minlength">
+                    A senha tem que ter no mínimo 6 caracteres.
                   </div>
+                  <div [hidden]="!senha.errors.maxlength">
+                    Senha não pode ter mais do que 10 caracteres
+                  </div>
+                </div>
+              </div>
+              <!-- CONFIRMAR SENHA -->
+              <div class="form-group" [ngClass]="{'has-danger': confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)}">
+                <label class="sr-only" for="form-confirm-password">Confirme a senha</label>
+                <input type="password" name="form-confirm-password" placeholder="Confirme a senha" class="form-inputs form-control"
+                  id="form-confirm-password" [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel" minlength="6"
+                  maxlength="10" required validateEqual="password" reverse="true">
 
-                  <div class="row">
-                    <div class="col-sm-8 col-md-8">
-                      <div class="form-group">
-                        <label class="sr-only" for="form-cidade">Cidade</label>
-                        <input type="text" name="form-cidade" placeholder="Cidade" class="form-inputs form-control" id="form-cidade" [(ngModel)]="model.endereco.localidade"
-                          #cidade="ngModel" required disabled>
-                      </div>
-                    </div>
-                    <div class="col-sm-4 col-md-4">
-                      <div class="form-group">
-                        <label class="sr-only" for="form-uf">UF</label>
-                        <input type="text" name="form-uf" placeholder="UF" class="form-inputs form-control" id="form-uf" [(ngModel)]="model.endereco.uf"
-                          #uf="ngModel" required disabled>
-                      </div>
-                    </div>
+                <div *ngIf="confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)" class="form-control-feedback ">
+                  <div>
+                    As senhas não conferem
                   </div>
-
-                  <div class="row">
-                    <div class="col-sm-4 col-md-4">
-                      <div class="form-group">
-                        <label class="sr-only" for="form-numero">Número</label>
-                        <input type="text" name="form-numero" placeholder="Nº" class="form-inputs form-control" id="form-numero" [(ngModel)]="model.endereco.numero"
-                          #numero="ngModel" required>
-                      </div>
-                    </div>
-                    <div class="col-sm-8 col-md-8">
-                      <div class="form-group">
-                        <label class="sr-only" for="form-complemento">Complemento</label>
-                        <input type="text" name="form-complemento" placeholder="Complemento" class="form-inputs form-control" id="form-complemento"
-                          [(ngModel)]="model.endereco.complemento" #complemento="ngModel">
-                      </div>
-                    </div>
-                  </div>
-                </fieldset>
+                </div>
+              </div>
+              <div class="flex-center">
+                <button type="button" class="btn btn-step" (click)="previous()"> &lt; Voltar</button>
+                <button type="button" class="btn btn-step" (click)="next()" [disabled]="!f.form.valid">Próximo &gt;</button>
               </div>
             </div>
-            <div class="p50">
-              <button type="button" class="btn btn-step" (click)="previous()">< Voltar</button>
-              <button type="submit" class="btn btn-step" [disabled]="!f2.form.valid">Próximo ></button>
-            </div>
-          </form>
-        </div>
+          </fieldset>
+        </form>
       </div>
-      <div class="col-sm-10 offset-sm-1" *ngIf="step == 3 && registerBillingInfo == false">
-        <div class="form-box">
-          <form role="form" class="registration-form" #f3="ngForm" novalidate>
-            <fieldset class="form-styles">
-              <h3> Deseja cadastrar um método de pagamento ? </h3>
-              <p> Você precisa de um método de pagamento para poder colocar créditos na sua conta. Mas não se preocupe, você
-                também pode colocar depois.
-              </p>
+    </div>
+    <!-- STEP 2 -->
+    <div class="col-sm-10 offset-sm-1 bg-light full-height flex-center" *ngIf="step == 2">
+      <div class="form-box">
+        <form role="form" class="registration-form" (ngSubmit)="f2.form.valid && register()" #f2="ngForm" novalidate>
+          <div class="form-top">
+            <div class="text-center">
+              <h3>INFORMAÇÕES</h3>
+              <p>Digite algumas informações para que possamos lhe conhecer melhor:</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-md-6 border-right">
+              <fieldset class="">
+                <div class="form-bottom">
+                  <!-- NOME COMPLETO -->
+                  <div class="form-group" [ngClass]="{'has-danger': nome.errors && (nome.dirty || nome.touched)}">
+                    <label class="sr-only" for="form-name">Nome completo</label>
+                    <input type="text" name="form-name" placeholder="Nome completo" class="form-inputs form-control" id="form-name"
+                      [(ngModel)]="model.nome" #nome="ngModel" minlength="2" required>
+
+                    <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="form-control-feedback ">
+                      <div>
+                        Digite seu nome completo.
+                      </div>
+                    </div>
+                  </div>
+                  <!-- EMAIL -->
+                  <div class="form-group" [ngClass]="{'has-danger': email.errors && (email.dirty || email.touched)}">
+                    <label class="sr-only" for="form-email">Email</label>
+                    <input type="email" name="form-email" placeholder="Email" class="form-inputs form-control" id="form-email"
+                      [(ngModel)]="model.email" #email="ngModel" required email>
+
+                    <div *ngIf="email.errors && (email.dirty || email.touched)" class="form-control-feedback ">
+                      <div>
+                        Digite um email válido
+                      </div>
+                    </div>
+                  </div>
+                  <!-- CPF / CNPJ -->
+                  <div class="form-group" [ngClass]="{'has-danger': cpf.errors && (cpf.dirty || cpf.touched)}">
+                    <label class="sr-only" for="form-cpf">CPF</label>
+                    <input type="text" name="form-cpf" placeholder="CPF" class="form-inputs form-control" id="form-cpf"
+                      [(ngModel)]="model.cpf" #cpf="ngModel" minlength="11" maxlength="14" mask="999.999.999-99"
+                      required>
+
+                    <div *ngIf="cpf.errors && cpf.dirty" class="form-control-feedback ">
+                      <div [hidden]="!cpf.errors.required">
+                        Digite um CPF
+                      </div>
+                      <div [hidden]="!cpf.errors.minlength || !cpf.errors.maxlength">
+                        O CPF tem que ter exatamente 14 caracteres!
+                      </div>
+                    </div>
+                  </div>
+                  <!-- TELEFONE -->
+                  <div class="form-group" [ngClass]="{'has-danger': telefone.errors && (telefone.dirty || telefone.touched)}">
+                    <label class="sr-only" for="form-telefone">Telefone</label>
+                    <input type="text" name="form-telefone" placeholder="Telefone" class="form-inputs form-control" id="form-telefone"
+                      [(ngModel)]="model.telefone" #telefone="ngModel" mask="(99) 99999-9999" minlength="10" maxlength="15"
+                      required>
+
+                    <div *ngIf="telefone.errors && (telefone.dirty || telefone.touched)" class="form-control-feedback ">
+                      <div>
+                        Digite um telefone válido.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-6 col-md-6">
+              <fieldset class="form-styles-s2">
+                <div class="form-group" [ngClass]="{'has-danger': cep.errors && (cep.dirty || cep.touched)}">
+                  <label class="sr-only" for="form-cep">CEP</label>
+                  <input type="text" name="form-cep" placeholder="CEP" class="form-inputs form-control" id="form-cep"
+                    [(ngModel)]="model.endereco.cep" #cep="ngModel" (keyup)="consultarCEP(cep.value);" required
+                    minlength="8" maxlength="9" mask="99999-999">
+
+                  <div *ngIf="cep.errors && (cep.dirty || cep.touched)" class="form-control-feedback">
+                    <div [hidden]="!cep.errors.required">
+                      Digite um CEP !
+                    </div>
+                    <div [hidden]="!cep.errors.minlength || !cep.errors.maxlength">
+                      O CEP tem que ter exatamente 9 caracteres!
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-8 col-md-8">
+                    <div class="form-group">
+                      <label class="sr-only" for="form-logradouro">Logradouro</label>
+                      <input type="text" name="form-logradouro" placeholder="Logradouro" class="form-inputs form-control"
+                        id="form-logradouro" [(ngModel)]="model.endereco.logradouro" #logradouro="ngModel" required>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 col-md-4">
+                    <div class="form-group">
+                      <label class="sr-only" for="form-bairro">Bairro</label>
+                      <input type="text" name="form-bairro" placeholder="Bairro" class="form-inputs form-control" id="form-bairro"
+                        [(ngModel)]="model.endereco.bairro" #bairro="ngModel" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-8 col-md-8">
+                    <div class="form-group">
+                      <label class="sr-only" for="form-cidade">Cidade</label>
+                      <input type="text" name="form-cidade" placeholder="Cidade" class="form-inputs form-control" id="form-cidade"
+                        [(ngModel)]="model.endereco.localidade" #cidade="ngModel" required>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 col-md-4">
+                    <div class="form-group">
+                      <label class="sr-only" for="form-uf">UF</label>
+                      <input type="text" name="form-uf" placeholder="UF" class="form-inputs form-control" id="form-uf"
+                        [(ngModel)]="model.endereco.uf" #uf="ngModel" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-4 col-md-4">
+                    <div class="form-group">
+                      <label class="sr-only" for="form-numero">Número</label>
+                      <input type="text" name="form-numero" placeholder="Nº" class="form-inputs form-control" id="form-numero"
+                        [(ngModel)]="model.endereco.numero" #numero="ngModel" required>
+                    </div>
+                  </div>
+                  <div class="col-sm-8 col-md-8">
+                    <div class="form-group">
+                      <label class="sr-only" for="form-complemento">Complemento</label>
+                      <input type="text" name="form-complemento" placeholder="Complemento" class="form-inputs form-control"
+                        id="form-complemento" [(ngModel)]="model.endereco.complemento" #complemento="ngModel">
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <div class="flex-center">
+            <button type="button" class="btn btn-step" (click)="previous()"> &lt; voltar</button>
+            <button type="submit" class="btn btn-step" [disabled]="!f2.form.valid">Próximo &gt; </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- STEP 3 -->
+    <div class="col-sm-10 offset-sm-1 bg-light full-height flex-center" *ngIf="step == 3 && registerBillingInfo == false">
+      <div class="form-box">
+        <form role="form" class="registration-form" #f3="ngForm" novalidate>
+          <fieldset class="text-justify">
+            <h3> Deseja cadastrar um método de pagamento ? </h3>
+            <p> Você precisa de um método de pagamento para poder colocar créditos na sua conta. Mas não se preocupe,
+              você
+              também pode colocar depois.
+            </p>
+            <div class="flex-center">
               <button type="button" class="btn btn-step" (click)="registerBillingInfo = true"> Sim </button>
               <button type="button" class="btn btn-step" (click)="register()"> Não </button>
-            </fieldset>
-          </form>
-        </div>
+            </div>
+          </fieldset>
+        </form>
       </div>
-      <form role="form" *ngIf="step == 3 && registerBillingInfo == true" class="registration-form" #f3="ngForm" novalidate>
-        <!-- STEP 3 -->
-        <fieldset class="form-styles">
+    </div>
+    <div class="col-sm-12 bg-light full-height flex-center" *ngIf="step == 3 && registerBillingInfo == true">
+      <form role="form" class="registration-form" #f3="ngForm" novalidate>
+        <fieldset class="container">
           <div class="form-top">
-            <div class="form-top-left">
+            <div class="text-center">
               <h3>MÉTODOS DE PAGAMENTO</h3>
               <p>Adicione um método de pagamento padrão, que será utilizado para comprar créditos:</p>
             </div>
           </div>
-          <div class="form-bottom">
-            <label>
-                <input type="radio" name="pagamento" value="small" [(ngModel)]="model.payment" value="1" [checked]="model.payment == 1 ? 'true' : 'false'"/>
-                <img src="../../../assets/img/bandeiras.png" class="payment-method-img img-fluid img-thumbnail" alt="Bandeiras">
-              </label>
-            <label>
-                <input type="radio" name="pagamento" value="small" [(ngModel)]="model.payment" value="2"/>
-                <img src="../../../assets/img/pagseguro.png" class="payment-method-img img-fluid img-thumbnail" alt="PagSeguro">
-              </label>
-
-
-            <div class="form-group" *ngIf="model.payment==1">
+          <div class="flex-center row">
+            <label class="col">
+              <input type="radio" name="pagamento" value="small" [(ngModel)]="model.payment" value="1" [checked]="model.payment == 1 ? 'true' : 'false'" />
+              <img src="../../../assets/img/bandeiras.png" class="payment-method-img img-fluid img-thumbnail" alt="Bandeiras">
+            </label>
+            <label class="col">
+              <input type="radio" name="pagamento" value="small" [(ngModel)]="model.payment" value="2" />
+              <img src="../../../assets/img/pagseguro.png" class="payment-method-img img-fluid img-thumbnail" alt="PagSeguro">
+            </label>
+            <div class="col-12" *ngIf="model.payment==1">
               <label class="sr-only" for="form-card">Digite o número do cartão </label>
               <input type="text" name="form-card" placeholder="Número do cartão" class="form-control" id="form-card">
             </div>
-            <button type="button" class="btn btn-step" (click)="previous()">< Voltar</button>
-            <button type="submit" class="btn btn-finish" (click)="next()">Finalizar</button>
+            <div class="flex-center col-12" style="margin-top:1em;">
+              <button type="button" class="btn btn-step" (click)="previous()"> &lt; voltar</button>
+              <button type="submit" class="btn btn-finish" (click)="next()">Finalizar
+              </button>
+            </div>
           </div>
         </fieldset>
 
       </form>
+
     </div>
   </div>
-</div>

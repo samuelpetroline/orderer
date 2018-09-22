@@ -1,11 +1,10 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-8">
-      <form class="login-form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+    <div class="col">
+      <form class="login-form flex-center" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
         <fieldset [disabled]="isLogging">
-          <h1 class="center hide-on-med-and-down">Bem vindo ao Orderer</h1>
-          <img class="hide-on-med-and-up" src="../../../assets/img/logo.svg" style="width: 100%;" />
-          <h2 class="center flow-text">App para cantina online</h2>
+          <img class="logo-mobile d-lg-none" src="../../../assets/img/logo.svg" />
+          <h2 class="center flow-text">Bem vindo ao Orderer</h2>
           <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !username.valid }">
             <input id="user-input" type="email" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel"
               placeholder="Usuário" required>
@@ -25,9 +24,9 @@
       </form>
 
     </div>
-    <div class="col-sm-4 hide-on-med-and-down">
-      <div class="logo-container">
-        <img class="logo-landing" src="../../../assets/img/logo.svg" />
+    <div class="col-4 d-none d-lg-block">
+      <div class="logo-container flex-center">
+          <img class="logo-landing" src="../../../assets/img/logo.svg" />
       </div>
     </div>
   </div>

@@ -4,6 +4,28 @@
 
 /* Just add the class ripple to anything and use the "data-ripple-color" property to set the ripple color */
 
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-center .btn {
+  margin: 0 4px;
+}
+
+.full-height{
+  min-height: 100vh;
+}
+
+.form-control-feedback {
+  background: rgb(236, 101, 114);
+  padding: 12px;
+  border-radius: 0px 20px 20px 20px;
+  margin-top: 15px;
+  font-weight: 600;
+  color: white;
+}
 
 .fab{
   border-radius: 50%;
