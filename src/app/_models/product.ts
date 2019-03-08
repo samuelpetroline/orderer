@@ -3,6 +3,7 @@ export class Product {
     name: string;
     price: number;
     description: string;
-    quantity: number;
+    stockControl: boolean;
+    active: boolean;
     image: string;
 }

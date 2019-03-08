@@ -16,7 +16,7 @@ export class ProductService {
     return this.http.post(this.config.apiUrl + '/api/products', product);
   }
 
-  update(product: any) {
+  update(product: Product) {
     return this.http.put(this.config.apiUrl + '/api/products', product);
   }
 

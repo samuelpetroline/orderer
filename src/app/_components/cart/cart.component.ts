@@ -11,7 +11,7 @@ export class CartComponent implements OnInit {
 
   constructor(private _orderService: OrderService) { }
 
-  itemList: any[];
+  itemList: Product[];
   totalAmount: number;
 
   ngOnInit() {
@@ -29,14 +29,11 @@ export class CartComponent implements OnInit {
   }
 
   getTotalAmount() {
-    this._orderService.getTotalAmount().subscribe(
-      data => {
-        this.totalAmount = data;
-      },
-      error => {
-        console.log(error);
-      }
-    )
+
+    this._orderService.getProducts().subscribe(products => {
+      this.totalAmount = products.map(item => item.price * item.quantity).reduce((prev, next) => prev + next);
+    });
+
   }
 
   cancelOrder() {

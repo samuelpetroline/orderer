@@ -1,8 +1,15 @@
+import { Address } from './models'
+
+
 export class User {
     _id: string;
-    username: string;
+    name: string;
+    email: string;
     password: string;
-    firstName: string;
-    lastName: string;
-    credits: number;
+    phone: string;
+    cpf: string;
+    address: Address;
+    balance: number;
+    isAdmin: boolean;
+    image: string;
 }

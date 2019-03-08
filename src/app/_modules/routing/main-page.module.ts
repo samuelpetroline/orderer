@@ -15,90 +15,90 @@ import { SettingsComponent } from '../../_components/settings/settings.component
 import { OrderListComponent } from '../../_components/order-list/order-list.component';
 import { OrderDetailsComponent } from '../../_components/order-details/order-details.component';
 
-const mainPageRoutes: Routes = 
-[
-  {        
-        path: 'main',
-        component: MainPageComponent,
-        canActivate: [AuthGuard],
-        children: [
-            {
-                path: '',
-                pathMatch: 'full',
-                redirectTo: 'dashboard'
-            },
-            {
-                path: 'dashboard',
-                pathMatch: 'full',
-                component: DashboardComponent
-            },
-            {
-                path: 'orders',
-                component: OrdersComponent,
-                children: [
-                    {
-                        path: '',
-                        pathMatch: 'full',
-                        redirectTo: 'order-list'
-                    },
-                    {
-                        path: 'order-list',
-                        component: OrderListComponent
-                    },
-                    {
-                        path: 'order-details/:id',
-                        component: OrderDetailsComponent
-                    }
-                ]
-            },
-            {
-                path: 'products',
-                component: ProductsComponent,
-                children: [
-                    {
-                        path: '',
-                        pathMatch: 'full',
-                        redirectTo: 'product-list'                        
-                    },  
-                    {
-                        path: 'product-list',
-                        component: ProductListComponent
-                    },
-                    {
-                        path: 'product-details/:id',
-                        component: ProductDetailsComponent              
-                    },
-                    {
-                        path: 'product-register',
-                        component: ProductRegisterComponent              
-                    },
-                    {
-                        path: 'product-register/:id',
-                        component: ProductRegisterComponent              
-                    }       
-                ]
-            },           
-            {
-                path: 'cart',
-                pathMatch: 'full',
-                component: CartComponent
-            },
-            {
-                path: 'settings',
-                pathMatch: 'full',
-                component: SettingsComponent
-            }
-      ]
-  }
-];
+const mainPageRoutes: Routes =
+    [
+        {
+            path: 'main',
+            component: MainPageComponent,
+            canActivate: [AuthGuard],
+            children: [
+                {
+                    path: '',
+                    pathMatch: 'full',
+                    redirectTo: 'dashboard'
+                },
+                {
+                    path: 'dashboard',
+                    pathMatch: 'full',
+                    component: DashboardComponent
+                },
+                {
+                    path: 'orders',
+                    component: OrdersComponent,
+                    children: [
+                        {
+                            path: '',
+                            pathMatch: 'full',
+                            redirectTo: 'order-list'
+                        },
+                        {
+                            path: 'order-list',
+                            component: OrderListComponent
+                        },
+                        {
+                            path: 'order-details/:id',
+                            component: OrderDetailsComponent
+                        }
+                    ]
+                },
+                {
+                    path: 'products',
+                    component: ProductsComponent,
+                    children: [
+                        {
+                            path: '',
+                            pathMatch: 'full',
+                            redirectTo: 'product-list'
+                        },
+                        {
+                            path: 'product-list',
+                            component: ProductListComponent
+                        },
+                        {
+                            path: 'product-details/:id',
+                            component: ProductDetailsComponent
+                        },
+                        {
+                            path: 'product-register',
+                            component: ProductRegisterComponent
+                        },
+                        {
+                            path: 'product-register/:id',
+                            component: ProductRegisterComponent
+                        }
+                    ]
+                },
+                {
+                    path: 'cart',
+                    pathMatch: 'full',
+                    component: CartComponent
+                },
+                {
+                    path: 'settings',
+                    pathMatch: 'full',
+                    component: SettingsComponent
+                }
+            ]
+        }
+    ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(mainPageRoutes)
-  ],
-  exports: [RouterModule],
-  declarations: []
+    imports: [
+        CommonModule,
+        RouterModule.forChild(mainPageRoutes)
+    ],
+    exports: [RouterModule],
+    declarations: []
 })
 
-export class MainPageRoutingModule  { }
+export class MainPageRoutingModule { }

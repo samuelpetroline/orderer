@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './_components/Login/login.component';
 import { LoadingComponent } from './_components/Loading/loading.component';
 
+import { BaseService } from './_services/base.service';
 import { LoadingService } from './_services/Loading/loading.service';
 import { AlertService } from './_services/Alert/alert.service';
 import { AuthenticationService } from './_services/Authentication/authentication.service';
@@ -71,7 +72,7 @@ import { CartComponent } from './_components/cart/cart.component';
     FormsModule,
     HttpModule,
     RoutingModule,
-    ChartsModule   
+    ChartsModule
   ],
   providers: [
     AppConfig,
