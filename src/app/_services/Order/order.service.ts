@@ -2,28 +2,19 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, Subscriber } from 'rxjs';
 import 'rxjs/add/operator/map'
 
-import { BaseService } from '../base.service';
+import { ApiService } from '../api.service';
 import { Order } from 'app/_models/order';
 import { OrderProduct } from 'app/_models/order.product';
 import { Utils } from 'app/utils';
 
 @Injectable()
-export class OrderService extends BaseService {
+export class OrderService {
 
   private orderSource: BehaviorSubject<Order>;
   currentOrder: Observable<Order> = this.orderSource.asObservable();
 
-  constructor() {
-    super();
-        
-    this.orderSubject = new BehaviorSubject(null);
-
-    this.orderSubject.subscribe(data => this.currentOrder = data);
-
-    let order = JSON.parse(localStorage.getItem('order'));
-    if (order) {
-      this.orderSubject.next(order);
-    }
+  constructor(private apiService: ApiService) {
+    this.orderSource = new BehaviorSubject({} as Order);
   }
 
   update(order: Order) {
@@ -31,20 +22,20 @@ export class OrderService extends BaseService {
     localStorage.setItem('order', JSON.stringify(order));
   }
 
-  finishOrder(order: Order) {
-    return this.post('/order', order);
+  finish(order: Order) {
+    return this.apiService.post('/order', order);
   }
 
-  getOrdersByUser(id: number) {
-    return this.get('/order/user/' + id);
+  getByUser(id: number) {
+    return this.apiService.get('/order/user/' + id);
   }
 
-  getOrderById(id: number) {
-    return this.get('/order/' + id);
+  getByID(id: number) {
+    return this.apiService.get('/order/' + id);
   }
 
-  getAllOrders() {
-    return this.get('/order');
+  getAll() {
+    return this.apiService.get('/order');
   }
 
 }

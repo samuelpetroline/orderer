@@ -36,14 +36,14 @@ export class LoginComponent implements OnInit {
     this.isLogging = true;
 
     this.authenticationService.login(this.model.username, this.model.password)
-            .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    this.alertService.error(error._body);
-                    this.isLogging = false;
-                });
+      .subscribe(
+        data => {
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.alertService.error(error._body);
+          this.isLogging = false;
+        });
   }
 
 }

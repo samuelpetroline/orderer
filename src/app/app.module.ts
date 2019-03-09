@@ -75,7 +75,6 @@ import { CartComponent } from './_components/cart/cart.component';
     ChartsModule
   ],
   providers: [
-    AppConfig,
     AlertService,
     LoadingService,
     AuthGuard,

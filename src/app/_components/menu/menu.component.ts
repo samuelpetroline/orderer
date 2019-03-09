@@ -25,7 +25,7 @@ export class MenuComponent implements OnInit, OnChanges {
   constructor(private _userService: UserService,
               private _orderService: OrderService,
               private router: Router) {
-                
+
     this.cartItemsObservable = this._orderService.getProducts();
 
     this.cartItemsObservable.subscribe(
@@ -36,7 +36,7 @@ export class MenuComponent implements OnInit, OnChanges {
         console.log(error);
       }
     )
-                
+
   }
 
   ngOnInit() {

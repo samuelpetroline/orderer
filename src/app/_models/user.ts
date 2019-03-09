@@ -1,4 +1,4 @@
-import { Address } from './models'
+import { Address } from "./address";
 
 
 export class User {

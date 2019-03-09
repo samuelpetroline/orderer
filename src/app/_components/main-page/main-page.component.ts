@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import { UserService } from '../../_services/User/user.service';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { User } from 'app/_models/user';
 
 @Component({
   selector: 'main-page',
@@ -10,21 +10,16 @@ import { Subject } from 'rxjs/Subject';
 })
 export class MainPageComponent implements OnInit {
 
-  user: any = {};
+  private user: User;
 
-  constructor(private _userService: UserService) {
-    this._userService.getUser().subscribe(
-      data => {
-        this.user = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
-   }
+  constructor(private userService: UserService) {
+    this.userService.getUser().subscribe(user => {
+      this.user = user;
+    })
+  }
 
   ngOnInit() {
-    
+
 
   }
 

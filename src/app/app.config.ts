@@ -1,4 +1,4 @@
-export class AppConfig {
-    public readonly apiUrl = 'https://ordererapi.azurewebsites.net';
-    public readonly cepWS = 'https://viacep.com.br/ws';
+export const AppConfig = {
+    apiUrl: 'https://ordererapi.azurewebsites.net',
+    cepWS: 'https://viacep.com.br/ws'
 };

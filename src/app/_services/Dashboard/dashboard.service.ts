@@ -3,33 +3,27 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { BehaviorSubject, Observable, Subject, Subscriber } from 'rxjs';
 
 import { UserService } from '../User/user.service';
-import { AppConfig } from '../../app.config';
+import { ApiService } from '../api.service';
+import { User } from 'app/_models/user';
 
 
 @Injectable()
 export class DashboardService {
 
-  private user: any;
-  private headers: Headers = new Headers();
-  private options:RequestOptions;
+  private user: User;
 
-  constructor(private http: Http, 
-              private config: AppConfig,
-              private _userService: UserService) { 
-    
-    this.headers.append('Content-Type', 'application/json');
-    this.options = new RequestOptions({ headers: this.headers });
+  constructor(private apiService: ApiService,
+    private userService: UserService) {
 
-    _userService.getUser().subscribe(
+    userService.getUser().subscribe(
       data => {
         this.user = data;
-      }
-    )
+      });
 
   }
 
   getInfos() {
-    return this.http.get(this.config.apiUrl + '/api/dashboard/' + this.user.Codigo);
+    return this.apiService.get('/dashboard/' + this.user._id);
   }
 
 

@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 
 import { AppConfig } from '../../app.config';
+import { ApiService } from '../api.service';
 
 @Injectable()
 export class CepService {
 
-  constructor(private http: Http, private config: AppConfig) { }
+  constructor(private apiService: ApiService) { }
 
   //consultar(cep: Observable<string>){
-  //  return cep.switchMap(data => this.consultarCEP(data));    
+  //  return cep.switchMap(data => this.consultarCEP(data));
   //}
 
   consultarCEP(value) {
-    return this.http.get(this.config.cepWS + '/' + value + '/json/').map(res => res.json())
+    return this.apiService.get(AppConfig.cepWS + '/' + value + '/json/').map(res => res.json())
   }
 
 
