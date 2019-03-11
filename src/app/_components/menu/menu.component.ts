@@ -7,6 +7,7 @@ import { Subject } from 'rxjs/Subject';
 import { UserService } from '../../_services/User/user.service';
 import { OrderService } from '../../_services/Order/order.service';
 import { Product } from '../../_models/product';
+import { Order } from 'app/_models/order';
 
 
 @Component({
@@ -16,27 +17,23 @@ import { Product } from '../../_models/product';
 })
 export class MenuComponent implements OnInit, OnChanges {
 
-  @Input() data: any = {};
+  @Input() data: Order;
   user: any = {};
 
-  public cartItemsObservable: Observable<any[]>;
-  public cartItems: any[];
+  private order: Order;
 
   constructor(private _userService: UserService,
-              private _orderService: OrderService,
+              private orderService: OrderService,
               private router: Router) {
 
-    this.cartItemsObservable = this._orderService.getProducts();
+    orderService.getCurrentOrder().subscribe(data => {
+      this.order = data;
+    });
 
-    this.cartItemsObservable.subscribe(
-      data => {
-        this.cartItems = data;
-      },
-      error => {
-        console.log(error);
-      }
-    )
+  }
 
+  getCartItemsAmount(): number {
+    return this.order && this.order.products ? this.order.products.length : 0;
   }
 
   ngOnInit() {

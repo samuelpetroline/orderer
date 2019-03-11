@@ -39,7 +39,7 @@ export class ProductListComponent implements OnInit {
         error => {
           console.log(error);
         }
-      )
+      );
 
       if (this.user.Admin) {
         this._prodService.getAll(false)

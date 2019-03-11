@@ -12,11 +12,11 @@ export class OrderListComponent implements OnInit {
   private user: any = {};
   private orderList: any[] = [];
 
-  constructor(private _orderService: OrderService) { 
+  constructor(private _orderService: OrderService) {
     this.user = JSON.parse(localStorage.getItem('user'));
 
-    if (!this.user.Admin) {    
-      this._orderService.getOrdersByUser(this.user.Codigo).subscribe(
+    if (!this.user.Admin) {
+      this._orderService.getByUser(this.user.Codigo).subscribe(
         data => {
           this.orderList = JSON.parse(data.json());
         },
@@ -26,7 +26,7 @@ export class OrderListComponent implements OnInit {
       )
     }
     else {
-      this._orderService.getAllOrders().subscribe(
+      this._orderService.getAll().subscribe(
         data => {
           this.orderList = JSON.parse(data.json());
         },
@@ -35,6 +35,7 @@ export class OrderListComponent implements OnInit {
         }
       )
     }
+
   }
 
   ngOnInit() {

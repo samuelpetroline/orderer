@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { LoadingService } from '../../_services/Loading/loading.service';
-import { AlertService } from '../../_services/Alert/alert.service';
-import { AuthenticationService } from '../../_services/Authentication/authentication.service';
+import { LoadingService } from '../../_services/loading/loading.service';
+import { AlertService } from '../../_services/alert/alert.service';
+import { AuthenticationService } from '../../_services/authentication/authentication.service';
+import { User } from 'app/_models/user';
 
 @Component({
   selector: 'login',
@@ -12,9 +13,10 @@ import { AuthenticationService } from '../../_services/Authentication/authentica
 })
 export class LoginComponent implements OnInit {
 
+  private user: User;
   private isLogging = false;
-  model: any = {};
-  returnUrl: string;
+
+  private returnUrl: string;
 
   constructor(
     public loading: LoadingService,
@@ -25,8 +27,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-    // reset login status
-    this.authenticationService.logout();
+    if (this.authenticationService.isAuthenticated) {
+      this.router.navigate(['/main']);
+      return;
+    }
 
     // get return url from route parameters or default to '/main'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/main';
@@ -35,15 +39,27 @@ export class LoginComponent implements OnInit {
   login() {
     this.isLogging = true;
 
-    this.authenticationService.login(this.model.username, this.model.password)
-      .subscribe(
-        data => {
-          this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          this.alertService.error(error._body);
-          this.isLogging = false;
-        });
+    this.authenticationService.login(this.user.name, this.user.password).subscribe(data => {
+      if (data.sucess) {
+        this.router.navigate([this.returnUrl]);
+      }
+      else {
+        this.alertService.error(data.message);
+        this.isLogging = false;
+      }
+    }, error => {
+      console.log('lado errado');
+      console.log(error);
+    });
+
+    // .subscribe(
+    //   data => {
+    //     this.router.navigate([this.returnUrl]);
+    //   },
+    //   error => {
+    //     this.alertService.error(error._body);
+    //     this.isLogging = false;
+    //   });
   }
 
 }

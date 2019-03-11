@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './_components/Login/login.component';
 import { LoadingComponent } from './_components/Loading/loading.component';
 
-import { BaseService } from './_services/base.service';
 import { LoadingService } from './_services/Loading/loading.service';
 import { AlertService } from './_services/Alert/alert.service';
 import { AuthenticationService } from './_services/Authentication/authentication.service';
@@ -41,6 +40,7 @@ import { FilterListPipe } from './_pipes/FilterList/filter-list.pipe';
 import { OrderListComponent } from './_components/order-list/order-list.component';
 import { OrderDetailsComponent } from './_components/order-details/order-details.component';
 import { CartComponent } from './_components/cart/cart.component';
+import { BaseComponent } from './_components/base/base.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +65,8 @@ import { CartComponent } from './_components/cart/cart.component';
     FilterListPipe,
     OrderListComponent,
     OrderDetailsComponent,
-    CartComponent
+    CartComponent,
+    BaseComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { OrderService } from '../../_services/Order/order.service';
+import { OrderService } from '../../_services/order/order.service';
+import { Order } from 'app/_models/order';
 
 @Component({
   selector: 'app-cart',
@@ -9,63 +10,53 @@ import { OrderService } from '../../_services/Order/order.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private _orderService: OrderService) { }
+  constructor(private orderService: OrderService) {}
 
-  itemList: Product[];
-  totalAmount: number;
+  private currentOrder: Order;
 
   ngOnInit() {
 
-    this._orderService.getProducts().subscribe(
-      data => {
-        this.itemList = data
+    this.orderService.getCurrentOrder().subscribe(
+      order => {
+        this.currentOrder = order;
       },
       error => {
         console.log(error);
       }
     )
-
-    this.getTotalAmount();
   }
 
   getTotalAmount() {
-
-    this._orderService.getProducts().subscribe(products => {
-      this.totalAmount = products.map(item => item.price * item.quantity).reduce((prev, next) => prev + next);
-    });
-
+    return this.currentOrder.products
+        .map(item => item.amount * item.unitValue).reduce((prev, next) => prev + next);
   }
 
   cancelOrder() {
-    this._orderService.removeAllFromCart();
+    this.orderService.clear();
   }
 
   finishOrder() {
-    this._orderService.finishOrder(this.itemList).subscribe(
+    this.orderService.finish().subscribe(
       data => {
-        this._orderService.removeAllFromCart();
       },
       error => {
         console.log(error);
       }
-    )
+    );
+
   }
 
   removeProduct(item: any) {
-    this._orderService.removeFromCart(item);
+    //this.orderService.removeFromCart(item);
   }
 
   increaseQty(item: any) {
     item.Quantidade++;
-
-    this.getTotalAmount();
   }
 
   decreaseQty(item: any) {
     if (item.Quantidade != 1)
       item.Quantidade--;
-
-    this.getTotalAmount();
   }
 
 }

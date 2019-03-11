@@ -45,10 +45,10 @@ export class ProductDetailsComponent implements OnInit {
       )
   }
 
-  addToCart(event, product: Product) {
+  addToCart(event, product: Product, amount: number) {
     event.stopPropagation();
 
-    this.orderService.addProduct(product);
+    this.orderService.addProduct(product, amount);
   }
 
 }

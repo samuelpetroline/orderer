@@ -6,15 +6,20 @@ import { ApiService } from '../api.service';
 import { Order } from 'app/_models/order';
 import { OrderProduct } from 'app/_models/order.product';
 import { Utils } from 'app/utils';
+import { Product } from 'app/_models/product';
 
 @Injectable()
 export class OrderService {
 
   private orderSource: BehaviorSubject<Order>;
-  currentOrder: Observable<Order> = this.orderSource.asObservable();
+  private currentOrder: Observable<Order> = this.orderSource.asObservable();
 
   constructor(private apiService: ApiService) {
     this.orderSource = new BehaviorSubject({} as Order);
+  }
+
+  getCurrentOrder() {
+    return this.currentOrder;
   }
 
   update(order: Order) {
@@ -22,8 +27,30 @@ export class OrderService {
     localStorage.setItem('order', JSON.stringify(order));
   }
 
-  finish(order: Order) {
-    return this.apiService.post('/order', order);
+  addProduct(product: Product, amount: number) {
+    let order = this.orderSource.getValue();
+
+    let newProduct = new OrderProduct();
+    newProduct.amount = amount;
+    newProduct.totalValue = product.price * amount;
+    newProduct.unitValue = product.price;
+    newProduct.item = product;
+
+    order.products.push(newProduct);
+    this.update(Utils.cloneObject(order));
+  }
+
+  clear() {
+    this.update({} as Order);
+  }
+
+  finish() {
+    return this.apiService.post('/order', this.currentOrder).map(result => {
+      this.clear();
+      return result;
+    }).catch(error => {
+      return Observable.throw(error.json());
+    })
   }
 
   getByUser(id: number) {

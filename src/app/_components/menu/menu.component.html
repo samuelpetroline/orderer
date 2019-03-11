@@ -3,11 +3,11 @@
     <li class="nav-photo">
       <div class="nav-login">
         <a class="no-style" [routerLink]="['settings']" fragment="user"> <img src="{{user.Imagem}}" /> </a>
-      </div>            
+      </div>
     </li>
     <li>
       <div class="nav-user">
-         {{ user.Nome }} 
+         {{ user.Nome }}
       </div>
     </li>
   </ul>
@@ -22,13 +22,13 @@
       <a class="nav-link"[routerLink]="['products']"><i class="fa fa-cutlery" aria-hidden="true"></i> Produtos </a>
     </li>
     <li class="nav-item" routerLinkActive="active" [hidden]="user.Admin">
-      <a class="nav-link"[routerLink]="['cart']" > <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrinho 
-      <span class="badge badge-info" [hidden]="(cartItemsObservable | async).length == 0">{{ (cartItemsObservable | async).length }}</span>
+      <a class="nav-link"[routerLink]="['cart']" > <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrinho
+      <span class="badge badge-info" [hidden]="getCartItemsAmount() == 0">{{ getCartItemsAmount() }}</span>
       </a>
     </li>
     <li class="nav-item" routerLinkActive="active">
       <a class="nav-link"[routerLink]="['settings']" > <i class="fa fa-cog" aria-hidden="true"></i> Configurações </a>
-    </li>    
+    </li>
     <li class="nav-item nav-logout">
       <a class="nav-link" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair </a>
     </li>

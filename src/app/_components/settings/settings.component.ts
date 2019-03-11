@@ -5,6 +5,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { UserService } from '../../_services/user/user.service';
 import { AlertService } from '../../_services/alert/alert.service';
 import { CepService } from '../../_services/cep/cep.service';
+
 import { User } from 'app/_models/user';
 import { Address } from 'app/_models/address';
 
@@ -38,14 +39,7 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
     this.userService.getUser().subscribe(
       user => {
-        this.userService.getUserById(user._id).subscribe(
-          user => {
-            this.user = user;
-          },
-          error => {
-            this.alert.error(error);
-          }
-        )
+        this.user = user;
       },
       error => {
         this.alert.error(error);
@@ -102,14 +96,6 @@ export class SettingsComponent implements OnInit {
     if (cep.length == 8) {
       this.cepService.consultarCEP(cep)
         .subscribe(result => {
-          // this.user.Endereco.Bairro = result.bairro;
-          // this.user.Endereco.Cep = result.cep;
-          // this.user.Endereco.Complemento = result.complemento;
-          // this.user.Endereco.Cidade = result.localidade;
-          // this.user.Endereco.Logradouro = result.logradouro;
-          // this.user.Endereco.Uf = result.uf;
-          // this.user.Endereco.Numero = "";
-
           this.user.address = new Address();
           this.user.address.city = result.localidade;
           this.user.address.complement = result.complemento
