@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingService } from '../../_services/Loading/loading.service';
+import { LoadingService } from '../../_services/loading/loading.service';
 
 @Component({
   selector: 'app-loading',
@@ -9,13 +9,12 @@ import { LoadingService } from '../../_services/Loading/loading.service';
 export class LoadingComponent implements OnInit {
   public active: boolean;
 
-  constructor(loading: LoadingService) {
-    loading.status.subscribe((status: boolean) => {
-      this.active = status;
-    })
-   }
+  constructor(private loadingService: LoadingService) {}
 
   ngOnInit() {
+    this.loadingService.getStatus().subscribe((status: boolean) => {
+      this.active = status;
+    });
   }
 
 }

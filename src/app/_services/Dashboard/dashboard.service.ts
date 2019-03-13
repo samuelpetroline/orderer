@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { BehaviorSubject, Observable, Subject, Subscriber } from 'rxjs';
 
-import { UserService } from '../User/user.service';
+import { UserService } from '../user/user.service';
 import { ApiService } from '../api.service';
 import { User } from 'app/_models/user';
 
@@ -23,7 +23,7 @@ export class DashboardService {
   }
 
   getInfos() {
-    return this.apiService.get('/dashboard/' + this.user._id);
+    return this.apiService.get<any>('/dashboard/' + this.user._id);
   }
 
 

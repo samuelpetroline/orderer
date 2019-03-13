@@ -3,8 +3,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 
 import { ApiService } from '../api.service';
-import { AuthenticationService } from '../authentication/authentication.service';
-
 import { User } from 'app/_models/user';
 
 @Injectable()
@@ -12,19 +10,14 @@ export class UserService {
   private currentUserSubject = new BehaviorSubject({} as User);
   public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
 
-  constructor(private apiService: ApiService, private authService: AuthenticationService) { }
+  constructor(private apiService: ApiService) { }
 
   getUser(): Observable<User> {
     return this.currentUserSubject;
   }
 
-  setUser(user: any) {
+  setUser(user: User) {
     this.currentUserSubject.next(user);
-  }
-
-  logout() {
-    this.currentUserSubject.next({} as User);
-    this.authService.logout();
   }
 
   getUserById(id: string): Observable<any> {
@@ -38,7 +31,7 @@ export class UserService {
   }
 
   update(user: User) {
-    return this.apiService.put('/api/users', JSON.stringify(user));
+    return this.apiService.put<User>('/api/users', JSON.stringify(user));
   }
 
   getDefaultUserImage(): string {

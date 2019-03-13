@@ -31,8 +31,7 @@ export class RegisterComponent implements OnInit {
   filterString: Subject<string> = new Subject<string>();
 
   constructor(
-    public loading: LoadingService,
-    private route: ActivatedRoute,
+    public loadingService: LoadingService,
     private router: Router,
     private alertService: AlertService,
     private userService: UserService,
@@ -62,10 +61,8 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loading.stop();
+    this.loadingService.hideLoader();
     this.step = 1;
-
-    //this.model.payment = 1;
   }
 
   previous() {

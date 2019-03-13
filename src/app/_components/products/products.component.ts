@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ProductService } from '../../_services/Product/product.service';
+import { ProductService } from '../../_services/product/product.service';
 
 @Component({
   selector: 'products',
@@ -16,7 +16,7 @@ export class ProductsComponent implements OnInit {
   productList: any[];
 
   ngOnInit() {
-    
+
   }
 
 }

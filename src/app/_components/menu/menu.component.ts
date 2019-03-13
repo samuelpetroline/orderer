@@ -4,10 +4,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { UserService } from '../../_services/User/user.service';
-import { OrderService } from '../../_services/Order/order.service';
-import { Product } from '../../_models/product';
+import { OrderService } from '../../_services/order/order.service';
 import { Order } from 'app/_models/order';
+import { AuthenticationService } from 'app/_services/authentication/authentication.service';
 
 
 @Component({
@@ -22,7 +21,7 @@ export class MenuComponent implements OnInit, OnChanges {
 
   private order: Order;
 
-  constructor(private _userService: UserService,
+  constructor(private authService: AuthenticationService,
               private orderService: OrderService,
               private router: Router) {
 
@@ -46,7 +45,7 @@ export class MenuComponent implements OnInit, OnChanges {
   }
 
   logout() {
-    this._userService.logout();
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 

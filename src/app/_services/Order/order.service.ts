@@ -53,16 +53,16 @@ export class OrderService {
     })
   }
 
-  getByUser(id: number) {
-    return this.apiService.get('/order/user/' + id);
+  getByUser(id: string) {
+    return this.apiService.get<Order[]>('/order/user/' + id);
   }
 
-  getByID(id: number) {
-    return this.apiService.get('/order/' + id);
+  getByID(id: string) {
+    return this.apiService.get<Order>('/order/' + id);
   }
 
   getAll() {
-    return this.apiService.get('/order');
+    return this.apiService.get<Order[]>('/order');
   }
 
 }

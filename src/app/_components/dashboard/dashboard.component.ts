@@ -4,8 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { UserService } from '../../_services/User/user.service';
-import { DashboardService } from '../../_services/Dashboard/dashboard.service';
+import { UserService } from '../../_services/user/user.service';
+import { DashboardService } from '../../_services/dashboard/dashboard.service';
 
 @Component({
   selector: 'dashboard',
@@ -18,14 +18,14 @@ export class DashboardComponent implements OnInit {
   public doughnutChartLabels:string[] = [];
   public doughnutChartData:number[] = [];
   public doughnutChartType:string = 'doughnut';
- 
+
   // events
   public chartClicked(e:any):void {
-    
+
   }
- 
+
   public chartHovered(e:any):void {
-    
+
   }
 
   public barChartOptions:any = {
@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
   public barChartLabels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
- 
+
   public barChartData:any[] = [
     {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
     {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
@@ -64,7 +64,7 @@ export class DashboardComponent implements OnInit {
 
 
 
-  
- 
+
+
 
 }

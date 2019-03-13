@@ -1,26 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
 
-import { AppConfig } from './app.config';
-
 import { AppComponent } from './app.component';
-import { LoginComponent } from './_components/Login/login.component';
-import { LoadingComponent } from './_components/Loading/loading.component';
+import { LoginComponent } from './_components/login/login.component';
+import { LoadingComponent } from './_components/loading/loading.component';
 
-import { LoadingService } from './_services/Loading/loading.service';
-import { AlertService } from './_services/Alert/alert.service';
-import { AuthenticationService } from './_services/Authentication/authentication.service';
-import { UserService } from './_services/User/user.service';
-import { CepService } from './_services/Cep/cep.service';
-import { OrderService } from './_services/Order/order.service';
-import { DashboardService } from './_services/Dashboard/dashboard.service';
+import { LoadingService } from './_services/loading/loading.service';
+import { AlertService } from './_services/alert/alert.service';
+import { AuthenticationService } from './_services/authentication/authentication.service';
+import { UserService } from './_services/user/user.service';
+import { CepService } from './_services/cep/cep.service';
+import { OrderService } from './_services/order/order.service';
+import { DashboardService } from './_services/dashboard/dashboard.service';
+import { ApiService } from './_services/api.service';
 
 import { AuthGuard } from './_guards/auth.guard';
 
-import { RoutingModule } from './_modules/Routing/routing.module';
+import { RoutingModule } from './_modules/routing/routing.module';
 import { MainPageComponent } from './_components/main-page/main-page.component';
 import { AlertComponent } from './_directives/alert/alert.component';
 import { RegisterComponent } from './_components/register/register.component';
@@ -40,7 +39,6 @@ import { FilterListPipe } from './_pipes/FilterList/filter-list.pipe';
 import { OrderListComponent } from './_components/order-list/order-list.component';
 import { OrderDetailsComponent } from './_components/order-details/order-details.component';
 import { CartComponent } from './_components/cart/cart.component';
-import { BaseComponent } from './_components/base/base.component';
 
 @NgModule({
   declarations: [
@@ -65,17 +63,17 @@ import { BaseComponent } from './_components/base/base.component';
     FilterListPipe,
     OrderListComponent,
     OrderDetailsComponent,
-    CartComponent,
-    BaseComponent
-  ],
+    CartComponent
+   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     RoutingModule,
     ChartsModule
   ],
   providers: [
+    ApiService,
     AlertService,
     LoadingService,
     AuthGuard,

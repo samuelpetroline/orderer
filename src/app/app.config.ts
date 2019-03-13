@@ -1,4 +1,4 @@
 export const AppConfig = {
-    apiUrl: 'https://ordererapi.azurewebsites.net',
+    apiUrl: 'http://localhost:8080',
     cepWS: 'https://viacep.com.br/ws'
 };

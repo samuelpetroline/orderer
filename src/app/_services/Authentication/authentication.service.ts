@@ -3,9 +3,7 @@ import { ReplaySubject, Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
 
 import { ApiService } from '../api.service';
-import { User } from 'app/_models/user';
-import { UserService } from '../User/user.service';
-
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthenticationService {
@@ -15,34 +13,37 @@ export class AuthenticationService {
 
     constructor(private apiService: ApiService, private userService: UserService) { }
 
-    login(username: string, password: string) {
-        let encoded = btoa(JSON.stringify({ username: username, password: password }));
+    login(email: string, password: string) {
+        let encoded = btoa(JSON.stringify({ email: email, password: password }));
 
-        return this.apiService.post('/auth', encoded).map(data => {
-            if (data) {
-                this.saveToken(data.token);
-                this.userService.setUser(data.user);
-                this.isAuthenticatedSubject.next(true);
-            }
+        try
+        {
+            return new Promise<any>((resolve, reject) => {
+                this.apiService.post<any>('/auth', encoded).map(data => {
+                    if (data) {
+                        this.saveToken(data.token);
+                        this.userService.setUser(data.user);
+                        this.isAuthenticatedSubject.next(true);
+                    }
 
-            return { sucess: true, message: "Login realizado com sucesso"};
-        }).catch(error => {
-            return Observable.throw(error.json());
-        });
+                    return { sucess: true, message: "Login realizado com sucesso"};
+                }).subscribe(user => {
+                    resolve(user);
+                }, error => {
+                    reject(error);
+                });
+            });
 
-        // this.apiService.post('/auth', encoded).subscribe(data => {
-        //     this.saveToken(data.token);
-        //     this.userService.setUser(data.user);
-        //     this.isAuthenticatedSubject.next(true);
-        // }, error => {
-        //     throw new Error(error);
-        // });
-
-        // return { success: this.isAuthenticated, message:
+        }
+        catch (ex)
+        {
+            throw ex;
+        }
     }
 
     logout() {
         this.destroyToken();
+        this.userService.setUser(null);
         this.isAuthenticatedSubject.next(false);
     }
 

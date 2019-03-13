@@ -83,7 +83,7 @@ export class SettingsComponent implements OnInit {
     this.userService.update(this.user).subscribe(
       data => {
         // this.userService.login(data.json());
-        this.userService.update(data.json());
+        this.userService.update(data);
 
       },
       error => {

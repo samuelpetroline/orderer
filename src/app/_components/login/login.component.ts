@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { LoadingService } from '../../_services/loading/loading.service';
@@ -26,11 +26,13 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService) { }
 
   ngOnInit() {
+    this.user = new User();
 
-    if (this.authenticationService.isAuthenticated) {
-      this.router.navigate(['/main']);
-      return;
-    }
+    this.authenticationService.isAuthenticated.subscribe(isAuth => {
+      if (isAuth) {
+        this.router.navigate(['/main']);
+      }
+    });
 
     // get return url from route parameters or default to '/main'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/main';
@@ -39,14 +41,15 @@ export class LoginComponent implements OnInit {
   login() {
     this.isLogging = true;
 
-    this.authenticationService.login(this.user.name, this.user.password).subscribe(data => {
+    this.authenticationService.login(this.user.email, this.user.password).then(data => {
       if (data.sucess) {
         this.router.navigate([this.returnUrl]);
       }
       else {
         this.alertService.error(data.message);
-        this.isLogging = false;
       }
+
+      this.isLogging = false;
     }, error => {
       console.log('lado errado');
       console.log(error);

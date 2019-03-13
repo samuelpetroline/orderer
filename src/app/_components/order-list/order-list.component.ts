@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { OrderService } from '../../_services/Order/order.service';
+import { OrderService } from '../../_services/order/order.service';
+import { Order } from 'app/_models/order';
+import { User } from 'app/_models/user';
 
 @Component({
   selector: 'order-list',
@@ -9,16 +11,16 @@ import { OrderService } from '../../_services/Order/order.service';
 })
 export class OrderListComponent implements OnInit {
 
-  private user: any = {};
-  private orderList: any[] = [];
+  private user: User;
+  private orderList: Order[]
 
   constructor(private _orderService: OrderService) {
     this.user = JSON.parse(localStorage.getItem('user'));
 
-    if (!this.user.Admin) {
-      this._orderService.getByUser(this.user.Codigo).subscribe(
-        data => {
-          this.orderList = JSON.parse(data.json());
+    if (!this.user.isAdmin) {
+      this._orderService.getByUser(this.user._id).subscribe(
+        orders => {
+          this.orderList = orders;
         },
         error => {
           console.log(error);
@@ -27,8 +29,8 @@ export class OrderListComponent implements OnInit {
     }
     else {
       this._orderService.getAll().subscribe(
-        data => {
-          this.orderList = JSON.parse(data.json());
+        orders => {
+          this.orderList = orders;
         },
         error => {
           console.log(error);

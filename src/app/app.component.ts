@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { LoadingService } from './_services/Loading/loading.service';
-import { AuthenticationService } from './_services/Authentication/authentication.service';
-import { AlertService } from './_services/Alert/alert.service';
+import { LoadingService } from './_services/loading/loading.service';
+import { AuthenticationService } from './_services/authentication/authentication.service';
+import { AlertService } from './_services/alert/alert.service';
 import { AppConfig } from './app.config';
 
 @Component({

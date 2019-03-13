@@ -1,29 +1,26 @@
 import { Injectable } from '@angular/core';
-import {Subject} from 'rxjs/Subject';
-import 'rxjs/add/operator/share';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
 export class LoadingService {
-  public status: Subject<boolean> = new Subject();
-  private _active: boolean = false;
 
-  public get active(): boolean {
-    return this._active;
+  private source = new BehaviorSubject(false);
+  public status = this.source.asObservable();
+
+  getStatus(): Observable<boolean> {
+    return this.source;
   }
 
-  public set active(v: boolean) {
-    this._active = v;
-    this.status.next(v);
+  setStatus(status: boolean) {
+    this.source.next(status);
   }
 
-  public start(): void {
-    this.active = true;
+  showLoader(): void {
+    this.setStatus(true);
   }
 
-  public stop(): void {
-    this.active = false;
+  hideLoader(): void {
+    this.setStatus(false);
   }
-
-  constructor() { }
 
 }

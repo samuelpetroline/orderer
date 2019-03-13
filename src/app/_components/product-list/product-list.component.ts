@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ProductService } from '../../_services/Product/product.service';
-import { UserService } from '../../_services/User/user.service';
+import { ProductService } from '../../_services/product/product.service';
+import { UserService } from '../../_services/user/user.service';
 
 @Component({
   selector: 'app-product-list',

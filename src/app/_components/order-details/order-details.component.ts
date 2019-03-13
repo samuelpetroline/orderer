@@ -19,9 +19,9 @@ export class OrderDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this._orderService.getByID(+params['id']).subscribe(
-        data => {
-          this.order = JSON.parse(data.json());
+      this._orderService.getByID(params['id']).subscribe(
+        order => {
+          this.order = order;
         },
         error => {
           console.log(error);

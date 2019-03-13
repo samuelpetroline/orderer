@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { AlertService } from '../../_services/Alert/alert.service';
-import { ProductService } from '../../_services/Product/product.service';
+import { AlertService } from '../../_services/alert/alert.service';
+import { ProductService } from '../../_services/product/product.service';
 
 @Component({
   selector: 'product-register',
@@ -44,7 +44,7 @@ export class ProductRegisterComponent implements OnInit {
   handleImageSelect(event) {
     var files = event.target.files;
     var file = files[0];
-    
+
     if (this.isImage(file)) {
       if (files && file) {
         var reader = new FileReader();
@@ -52,7 +52,7 @@ export class ProductRegisterComponent implements OnInit {
         reader.onload = this._handleReaderLoaded.bind(this);
 
         reader.readAsBinaryString(file);
-      }    
+      }
     }
     else {
       this.alert.error("Este arquivo não é uma imagem !");
@@ -92,7 +92,7 @@ export class ProductRegisterComponent implements OnInit {
           prod => {
             this.product = JSON.parse(prod);
           }
-        )      
+        )
         this.alert.success("Editado com sucesso !");
       },
       error => {
