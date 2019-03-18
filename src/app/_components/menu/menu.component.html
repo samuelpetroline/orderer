@@ -2,7 +2,7 @@
   <ul class="nav flex-column">
     <li class="nav-photo">
       <div class="nav-login">
-        <a class="no-style" [routerLink]="['settings']" fragment="user"> <img src="{{user.Imagem}}" /> </a>
+        <a class="no-style" [routerLink]="['settings']" fragment="user"> <img src="{{user.image}}" /> </a>
       </div>
     </li>
     <li>
@@ -13,21 +13,21 @@
   </ul>
   <ul class="nav nav-pills flex-column">
     <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" [routerLink]="['dashboard']" > <i class="fa fa-home" aria-hidden="true"></i> Principal </a>
+      <a class="nav-link" [routerLink]="['./dashboard']" > <i class="fa fa-home" aria-hidden="true"></i> Principal </a>
     </li>
     <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link"[routerLink]="['orders']" > <i class="fa fa-pencil" aria-hidden="true"></i> Pedidos </a>
+      <a class="nav-link"[routerLink]="['./orders']" > <i class="fa fa-pencil" aria-hidden="true"></i> Pedidos </a>
     </li>
     <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link"[routerLink]="['products']"><i class="fa fa-cutlery" aria-hidden="true"></i> Produtos </a>
+      <a class="nav-link"[routerLink]="['./products']"><i class="fa fa-cutlery" aria-hidden="true"></i> Produtos </a>
     </li>
-    <li class="nav-item" routerLinkActive="active" [hidden]="user.Admin">
-      <a class="nav-link"[routerLink]="['cart']" > <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrinho
+    <li class="nav-item" routerLinkActive="active" [hidden]="user.isAdmin">
+      <a class="nav-link"[routerLink]="['./cart']" > <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrinho
       <span class="badge badge-info" [hidden]="getCartItemsAmount() == 0">{{ getCartItemsAmount() }}</span>
       </a>
     </li>
     <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link"[routerLink]="['settings']" > <i class="fa fa-cog" aria-hidden="true"></i> Configurações </a>
+      <a class="nav-link"[routerLink]="['./settings']" > <i class="fa fa-cog" aria-hidden="true"></i> Configurações </a>
     </li>
     <li class="nav-item nav-logout">
       <a class="nav-link" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair </a>

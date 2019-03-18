@@ -3,6 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ProductService } from '../../_services/product/product.service';
 import { UserService } from '../../_services/user/user.service';
+import { User } from 'app/_models/user';
+import { Observable } from 'rxjs';
+import { Product } from 'app/_models/product';
 
 @Component({
   selector: 'app-product-list',
@@ -12,46 +15,25 @@ import { UserService } from '../../_services/user/user.service';
 })
 export class ProductListComponent implements OnInit {
 
-  user: any = {};
+  private productList$: Observable<Product>;
+  private user: User;
 
-  constructor(private _prodService: ProductService,
-              private router: Router,
-              private _userService: UserService) { }
-
-  productList: any[];
-  productListInactive: any[];
+  constructor(private productService: ProductService,
+    private userService: UserService) { }
 
   ngOnInit() {
-    this._prodService.getAll(true)
-      .subscribe(
-        data => {
-          this.productList = JSON.parse(data);
-        },
-        error => {
-          console.log(error);
-        }
-      );
 
-      this._userService.getUser().subscribe(
-        data => {
-          this.user = data;
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    this.productList$ = this.productService.getAll(true);
 
-      if (this.user.Admin) {
-        this._prodService.getAll(false)
-          .subscribe(
-            data => {
-              this.productListInactive = JSON.parse(data);
-            },
-            error => {
-              console.log(error);
-            }
-          );
+    this.userService.getUser().subscribe(
+      user => {
+        this.user = user;
+      },
+      error => {
+        console.log(error);
       }
+    );
+
   }
 
 }

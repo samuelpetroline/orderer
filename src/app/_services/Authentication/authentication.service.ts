@@ -19,14 +19,16 @@ export class AuthenticationService {
         try
         {
             return new Promise<any>((resolve, reject) => {
-                this.apiService.post<any>('/auth', encoded).map(data => {
+                this.apiService.post('/auth', encoded).map(data => {
                     if (data) {
                         this.saveToken(data.token);
                         this.userService.setUser(data.user);
                         this.isAuthenticatedSubject.next(true);
+
+                        return { sucess: true, message: "Login realizado com sucesso"};
                     }
 
-                    return { sucess: true, message: "Login realizado com sucesso"};
+                    return { sucess: false, message: data.message};
                 }).subscribe(user => {
                     resolve(user);
                 }, error => {
@@ -47,11 +49,11 @@ export class AuthenticationService {
         this.isAuthenticatedSubject.next(false);
     }
 
-    getToken(): String {
+    getToken(): string {
         return window.localStorage['jwtToken'];
     }
 
-    saveToken(token: String) {
+    saveToken(token: string) {
         window.localStorage['jwtToken'] = token;
     }
 

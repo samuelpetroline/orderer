@@ -13,24 +13,23 @@ export class ProductService {
   constructor(private apiService: ApiService) { }
 
   create(product: Product) {
-    return this.apiService.post('/products', product);
+    return this.apiService.post('/product', product);
   }
 
   update(product: Product) {
-    return this.apiService.put('/products', product);
+    return this.apiService.put('/product', product);
   }
 
   delete(id: number) {
-    return this.apiService.delete('/products/' + id);
+    return this.apiService.delete('/product/' + id);
   }
 
   getById(id: number) {
-    return this.apiService.get('/products/' + id).map((response: Response) => response.json());
+    return this.apiService.get('/product/' + id);
   }
 
   getAll(ativo: boolean) {
-    let request = { active: ativo};
-    return this.apiService.post('/products/', request).map((response: Response) => response.json());
+    return this.apiService.get('/product');
   }
 
 

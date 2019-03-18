@@ -23,7 +23,7 @@ export class DashboardService {
   }
 
   getInfos() {
-    return this.apiService.get<any>('/dashboard/' + this.user._id);
+    return this.apiService.get('/dashboard/' + this.user._id);
   }
 
 

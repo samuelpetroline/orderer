@@ -91,10 +91,6 @@ body {
   cursor: pointer;
 }
 
-.btn-login:active {
-  background: #4e9b57;
-}
-
 input:focus::-webkit-input-placeholder {
   color: transparent;
   transition: color 0.3s ease;

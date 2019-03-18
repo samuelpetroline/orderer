@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { AuthenticationService } from './authentication/authentication.service';
 import { AppConfig } from '../app.config';
 
 import 'rxjs/add/operator/map';
@@ -12,57 +11,49 @@ import 'rxjs/add/observable/of';
 
 @Injectable()
 export class ApiService {
-    private headers: HttpHeaders;
     private baseURL: string;
 
     constructor(private http: HttpClient) {
-        this.headers = new HttpHeaders();
-        this.headers.append('Content-Type', 'application/json');
+
 
         this.baseURL = `${AppConfig.apiUrl}/api`;
     }
 
-    post<T>(url: string, data: any): Observable<T> {
-        return this.http.post<T>(this.baseURL + url, JSON.stringify(data), { headers: this.getHeaders() })
-            .retry(3)
+    post(url: string, data: any): Observable<any> {
+        return this.http.post(this.baseURL + url, JSON.stringify(data), { headers: this.getHeaders() })
             .catch(err => {
-                return Observable.of(err);
+                throw new Error(err.message);
             });
     }
 
-    get<T>(url: string): Observable<T> {
-        return this.http.get<T>(this.baseURL + url, { headers: this.getHeaders() })
-            .retry(3)
+    get(url: string, params?: HttpParams): Observable<any> {
+        return this.http.get(this.baseURL + url, { headers: this.getHeaders(), params: params })
             .catch(err => {
-                return Observable.of(err);
+                console.log(err);
+                throw new Error(err.message);
             });
     }
 
-    delete(url: string): Observable<Response> {
+    delete(url: string): Observable<any> {
         return this.http.delete(this.baseURL + url, { headers: this.getHeaders() })
-            .retry(3)
             .catch(err => {
-                return Observable.of(err);
+                throw new Error(err.message);
             });
     }
 
-    put<T>(url: string, data: any): Observable<T> {
+    put(url: string, data: any): Observable<any> {
         return this.http.put(this.baseURL + url, JSON.stringify(data), { headers: this.getHeaders() })
-            .retry(3)
             .catch(err => {
-                return Observable.of(err);
+                throw new Error(err.message);
             });
     }
 
     private getHeaders(): HttpHeaders {
-        // if (!this.headers.has('Authorization')) {
+        let headers = new HttpHeaders();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Accept', 'application/json');
 
-        //     let token = this.authService.getToken();
-        //     if (token) {
-        //         this.headers.append('Authorization', `Bearer ${token}`);
-        //     }
-        // }
 
-        return this.headers;
+        return headers;
     }
 }

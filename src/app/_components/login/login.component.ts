@@ -30,12 +30,12 @@ export class LoginComponent implements OnInit {
 
     this.authenticationService.isAuthenticated.subscribe(isAuth => {
       if (isAuth) {
-        this.router.navigate(['/main']);
+        this.router.navigate(['../main']);
       }
     });
 
     // get return url from route parameters or default to '/main'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/main';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '../main';
   }
 
   login() {
@@ -45,24 +45,10 @@ export class LoginComponent implements OnInit {
       if (data.sucess) {
         this.router.navigate([this.returnUrl]);
       }
-      else {
-        this.alertService.error(data.message);
-      }
-
-      this.isLogging = false;
     }, error => {
-      console.log('lado errado');
-      console.log(error);
+      this.alertService.error(error.message);
+      this.isLogging = false;
     });
-
-    // .subscribe(
-    //   data => {
-    //     this.router.navigate([this.returnUrl]);
-    //   },
-    //   error => {
-    //     this.alertService.error(error._body);
-    //     this.isLogging = false;
-    //   });
   }
 
 }

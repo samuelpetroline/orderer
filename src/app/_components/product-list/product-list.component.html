@@ -1,34 +1,36 @@
 <div class="row">
   <div class="col-sm-11 col-lg-11">
     <div class="row">
-      <div class="col-sm-10 col-lg-10" [ngClass]="{'col-sm-12 col-lg-12': !user.Admin }">
+      <div class="col-sm-10 col-lg-10" [ngClass]="{'col-sm-12 col-lg-12': !user.isAdmin }">
         <div class="input-group">
           <input type="text" class="form-control search-bar" placeholder="Procurar por..." [(ngModel)]="filterString">
           <span class="input-group-btn">
-          <button class="btn btn-default search-button" type="button">
-            <span class="fa fa-search search-icon" ></span>
-          </button>
+            <button class="btn btn-default search-button" type="button">
+              <span class="fa fa-search search-icon"></span>
+            </button>
           </span>
         </div>
       </div>
-      <div class="col-sm-2 col-lg-2" [hidden]="!user.Admin">
+      <div class="col-sm-2 col-lg-2" [hidden]="!user.isAdmin">
         <a class="btn btn-success btn-flat" [routerLink]="['../product-register']" role="button">
-            <i class="fa fa-plus" aria-hidden="true"></i> Cadastrar
+          <i class="fa fa-plus" aria-hidden="true"></i> Cadastrar
         </a>
       </div>
     </div>
   </div>
 </div>
-<br/>
+
 <section class="active">
-  <card *ngFor="let product of productList | filterBy: 'Nome' : filterString" [product]="product" [user]="user" [routerLink]="['product-details', product.id]">
-  </card>
+  <div *ngIf="(productList$ | async)">
+    <card *ngFor="let product of productList$ | async" [product]="product" [user]="user" [routerLink]="['product-details', product.id]">
+    </card>
+  </div>
 </section>
 
-
+<!--
 <section class="inactive" *ngIf="user.Admin == true">
   <h2 class="text-muted"> Produtos inativos </h2>
-  <hr/>
-  <card *ngFor="let product of productListInactive" [product]="product"  [user]="user" [routerLink]="['product-details', product.id]">
+  <hr />
+  <card *ngFor="let product of productListInactive" [product]="product" [user]="user" [routerLink]="['product-details', product.id]">
   </card>
-</section>
+</section> -->

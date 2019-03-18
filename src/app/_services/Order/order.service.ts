@@ -11,7 +11,7 @@ import { Product } from 'app/_models/product';
 @Injectable()
 export class OrderService {
 
-  private orderSource: BehaviorSubject<Order>;
+  private orderSource = new BehaviorSubject<Order>({} as Order);
   private currentOrder: Observable<Order> = this.orderSource.asObservable();
 
   constructor(private apiService: ApiService) {
@@ -45,7 +45,7 @@ export class OrderService {
   }
 
   finish() {
-    return this.apiService.post('/order', this.currentOrder).map(result => {
+    return this.apiService.post('/orders', this.currentOrder).map(result => {
       this.clear();
       return result;
     }).catch(error => {
@@ -54,15 +54,15 @@ export class OrderService {
   }
 
   getByUser(id: string) {
-    return this.apiService.get<Order[]>('/order/user/' + id);
+    return this.apiService.get('/orders/user/' + id);
   }
 
   getByID(id: string) {
-    return this.apiService.get<Order>('/order/' + id);
+    return this.apiService.get('/orders/' + id);
   }
 
   getAll() {
-    return this.apiService.get<Order[]>('/order');
+    return this.apiService.get('/orders');
   }
 
 }

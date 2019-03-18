@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
@@ -19,7 +18,9 @@ import { ApiService } from './_services/api.service';
 
 import { AuthGuard } from './_guards/auth.guard';
 
-import { RoutingModule } from './_modules/routing/routing.module';
+import { HttpsRequestInterceptor } from './_modules/interceptor/interceptor.module';
+
+import { Routing } from './_modules/routing/routing.module';
 import { MainPageComponent } from './_components/main-page/main-page.component';
 import { AlertComponent } from './_directives/alert/alert.component';
 import { RegisterComponent } from './_components/register/register.component';
@@ -66,11 +67,11 @@ import { CartComponent } from './_components/cart/cart.component';
     CartComponent
    ],
   imports: [
+    Routing,
     BrowserModule,
     FormsModule,
-    HttpClientModule,
-    RoutingModule,
-    ChartsModule
+    ChartsModule,
+    HttpsRequestInterceptor
   ],
   providers: [
     ApiService,

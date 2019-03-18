@@ -14,7 +14,7 @@ export class CepService {
   //}
 
   consultarCEP(value) {
-    return this.apiService.get<any>(AppConfig.cepWS + '/' + value + '/json/').map(res => res.json())
+    return this.apiService.get(AppConfig.cepWS + '/' + value + '/json/').map(res => res.json())
   }
 
 

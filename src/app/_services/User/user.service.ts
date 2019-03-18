@@ -10,7 +10,12 @@ export class UserService {
   private currentUserSubject = new BehaviorSubject({} as User);
   public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {
+    let user = localStorage.getItem("user");
+    if (user) {
+      this.setUser(JSON.parse(user) as User);
+    }
+   }
 
   getUser(): Observable<User> {
     return this.currentUserSubject;
@@ -18,20 +23,21 @@ export class UserService {
 
   setUser(user: User) {
     this.currentUserSubject.next(user);
+    localStorage.setItem("user", JSON.stringify(user));
   }
 
   getUserById(id: string): Observable<any> {
-    return this.apiService.get('/users/' + id);
+    return this.apiService.get('/user/' + id);
   }
 
   create(user: User) {
     user.image = this.getDefaultUserImage();
 
-    return this.apiService.post('/api/users', JSON.stringify(user));
+    return this.apiService.post('/user', JSON.stringify(user));
   }
 
   update(user: User) {
-    return this.apiService.put<User>('/api/users', JSON.stringify(user));
+    return this.apiService.put('/user', JSON.stringify(user));
   }
 
   getDefaultUserImage(): string {

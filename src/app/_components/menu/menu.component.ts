@@ -7,6 +7,7 @@ import { Subject } from 'rxjs/Subject';
 import { OrderService } from '../../_services/order/order.service';
 import { Order } from 'app/_models/order';
 import { AuthenticationService } from 'app/_services/authentication/authentication.service';
+import { User } from 'app/_models/user';
 
 
 @Component({
@@ -16,8 +17,8 @@ import { AuthenticationService } from 'app/_services/authentication/authenticati
 })
 export class MenuComponent implements OnInit, OnChanges {
 
-  @Input() data: Order;
-  user: any = {};
+  @Input() data: User;
+  user: User;
 
   private order: Order;
 
